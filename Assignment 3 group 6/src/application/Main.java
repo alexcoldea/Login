@@ -75,12 +75,12 @@ public class Main extends Application {
 		
 		
 		paintingNavButton.setOnAction(event -> {
-			navigatePainting();
+			stage.setScene(navigatePainting());
 			
 		});
 		
 		sculptureNavButton.setOnAction(event -> {
-			navigateSculpture();
+			stage.setScene(navigateSculpture());
 		});
 		
 		homeNavButton.setOnAction(event -> {
@@ -93,13 +93,49 @@ public class Main extends Application {
 		return scene;
 	}
 	
-	public void navigateSculpture(){
+	
+	
+	
+	public Scene navigatePainting(){
+		BorderPane paintingPage = new BorderPane();
+		Scene scene = new Scene(paintingPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		VBox left = new VBox();
+		VBox right = new VBox();
+		
+		
+		Button homeNavButton = new Button("Home");
+		paintingPage.setBottom(homeNavButton);
+
+		homeNavButton.setOnAction(event -> {
+			stage.setScene(homeScene);
+		});
+		
+		paintingPage.setLeft(left);
+		paintingPage.setRight(right);
+		return scene;
 		
 	}
-	
-	
-	public void navigatePainting(){
-		
+
+	public Scene navigateSculpture() {
+
+		BorderPane sculpturePage = new BorderPane();
+		Scene scene = new Scene(sculpturePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		VBox left = new VBox();
+		VBox right = new VBox();
+		Button createSculpture = new Button("Create Sculpture");
+
+		Button homeNavButton = new Button("Home");
+		sculpturePage.setBottom(homeNavButton);
+
+		homeNavButton.setOnAction(event -> {
+			stage.setScene(homeScene);
+		});
+
+		left.getChildren().addAll(createSculpture);
+
+		sculpturePage.setLeft(left);
+		sculpturePage.setRight(right);
+		return scene;
 	}
 	
 	
