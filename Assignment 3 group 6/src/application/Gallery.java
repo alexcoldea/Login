@@ -1,7 +1,7 @@
 package application;
 /**
  * This class represents a browsing mechanism for artworks. 
- * @author mathlah
+ * @author Christopher Lee
  * @version 1.0
  */
 
