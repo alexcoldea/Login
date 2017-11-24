@@ -31,7 +31,10 @@ public class Main extends Application {
 	TextField bidsAllowedBox = new TextField();
 	TextField heightBox = new TextField();
 	TextField widthBox = new TextField();
+	TextField depthBox = new TextField();
+	TextField materialBox = new TextField();
 	ImageView myImageView = new ImageView();
+	Button homeNavButton = new Button("Home");
 
 	String uploader;
 	String title;
@@ -42,6 +45,9 @@ public class Main extends Application {
 	Date date;
 	double height;
 	double width;
+	double depth;
+	String material;
+	Label errorLabel = new Label("");
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,7 +56,7 @@ public class Main extends Application {
 			BorderPane root = new BorderPane();
 			VBox left = new VBox();
 			VBox right = new VBox();
-			Label homePageLabel = new Label("Home Page");
+			Label homePageLabel = new Label("Home Page (Place Holder)");
 			root.setLeft(left);
 			root.setRight(right);
 			root.setCenter(homePageLabel);
@@ -81,13 +87,14 @@ public class Main extends Application {
 
 		BorderPane sellPage = new BorderPane();
 		Scene scene = new Scene(sellPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		Label sellPageLabel = new Label("Sell Page (Place Holder)");
+		sellPage.setCenter(sellPageLabel);
 		VBox left = new VBox();
 		VBox right = new VBox();
 		sellPage.setLeft(left);
 		sellPage.setRight(right);
 		Button paintingNavButton = new Button("Sell Painting");
 		Button sculptureNavButton = new Button("Sell Sculpture");
-		Button homeNavButton = new Button("Home");
 		sellPage.setBottom(homeNavButton);
 		paintingNavButton.setMaxWidth(Double.MAX_VALUE);
 		sculptureNavButton.setMaxWidth(Double.MAX_VALUE);
@@ -114,16 +121,18 @@ public class Main extends Application {
 	public Scene navigatePainting() {
 		BorderPane paintingPage = new BorderPane();
 		Scene scene = new Scene(paintingPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		Label paintingPageLabel = new Label("Painting Page (Place Holder)");
+		paintingPage.setCenter(paintingPageLabel);
 		VBox left = new VBox();
 		VBox right = new VBox();
-		Button createPaintingButton = new Button("Create Artwork");
-		Button homeNavButton = new Button("Home");
+		Button createPaintingButton = new Button("Create Painting");
+		
 		paintingPage.setBottom(homeNavButton);
 
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
 		Label paintingLabel = new Label("Painting");
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox);
+				reservePriceBox, bidsAllowedBox, heightBox, widthBox,errorLabel);
 
 		createPaintingButton.setOnAction(event -> {
 			createPainting();
@@ -144,18 +153,27 @@ public class Main extends Application {
 
 		BorderPane sculpturePage = new BorderPane();
 		Scene scene = new Scene(sculpturePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		Label sculpturePageLabel = new Label("Sculpture Page (Place Holder)");
+		sculpturePage.setCenter(sculpturePageLabel);
 		VBox left = new VBox();
 		VBox right = new VBox();
-		Button createSculpture = new Button("Create Sculpture");
+		Button createSculptureButton = new Button("Create Sculpture");
 
-		Button homeNavButton = new Button("Home");
 		sculpturePage.setBottom(homeNavButton);
+		
+		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
+		Label sculptureLabel = new Label("Sculpture");
+		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
+				reservePriceBox, bidsAllowedBox, heightBox, widthBox,depthBox,materialBox,errorLabel);
+
+		createSculptureButton.setOnAction(event -> {
+			createSculpture();
+
+		});
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
 		});
-
-		left.getChildren().addAll(createSculpture);
 
 		sculpturePage.setLeft(left);
 		sculpturePage.setRight(right);
@@ -179,11 +197,35 @@ public class Main extends Application {
 
 			Artwork.artworkList.add(test);
 		} catch (NumberFormatException e) {
-			System.out.println("Error, Please do not leave a field empty");
+			errorLabel.setText("Error, Please do not leave a field empty");
 		}
 
 	}
 
+	
+	public void createSculpture() {
+		try {
+			String uploader = uploaderBox.getText();
+			title = titleBox.getText();
+			String creatorName = creatorNameBox.getText();
+			String year = yearBox.getText();
+			double reservePrice = Double.parseDouble(reservePriceBox.getText());
+			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
+			Date date = new Date();
+			double height = Double.parseDouble(heightBox.getText());
+			double width = Double.parseDouble(widthBox.getText());
+
+			Painting test = new Painting(uploader, title, image, creatorName, year, reservePrice, bidsAllowed, date,
+					height, width);
+
+			Artwork.artworkList.add(test);
+		} catch (NumberFormatException e) {
+			errorLabel.setText("Error, Please do not leave a field empty");
+		}
+
+	}
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
