@@ -1,8 +1,15 @@
 package application;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
+
 import javafx.application.Application;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,35 +26,35 @@ public class Main extends Application {
 	final int PANE_SIZE_HEIGHT = 1000;
 	final int DISPLAY_IMAGE_WIDTH = 100;
 	final int DISPLAY_IMAGE_HEIGHT = 100;
-	Scene scene;
-	Stage stage;
-	Scene homeScene;
-	Image image;
-	TextField uploaderBox = new TextField();
-	TextField titleBox = new TextField();
-	TextField creatorNameBox = new TextField();
-	TextField yearBox = new TextField();
-	TextField reservePriceBox = new TextField();
-	TextField bidsAllowedBox = new TextField();
-	TextField heightBox = new TextField();
-	TextField widthBox = new TextField();
-	TextField depthBox = new TextField();
-	TextField materialBox = new TextField();
-	ImageView myImageView = new ImageView();
-	Button homeNavButton = new Button("Home");
+	private Scene scene;
+	private Stage stage;
+	private Scene homeScene;
+	private Image image;
+	private TextField uploaderBox = new TextField();
+	private TextField titleBox = new TextField();
+	private TextField creatorNameBox = new TextField();
+	private TextField yearBox = new TextField();
+	private TextField reservePriceBox = new TextField();
+	private TextField bidsAllowedBox = new TextField();
+	private TextField heightBox = new TextField();
+	private TextField widthBox = new TextField();
+	private TextField depthBox = new TextField();
+	private TextField materialBox = new TextField();
+	private ImageView myImageView = new ImageView();
+	private Button homeNavButton = new Button("Home");
 
-	String uploader;
-	String title;
-	String creatorName;
-	String year;
-	double reservePrice;
-	int bidsAllowed;
-	Date date;
-	double height;
-	double width;
-	double depth;
-	String material;
-	Label errorLabel = new Label("");
+	private String uploader;
+	private String title;
+	private String creatorName;
+	private String year;
+	private double reservePrice;
+	private int bidsAllowed;
+	private double height;
+	private double width;
+	private double depth;
+	private String material;
+	private Label errorLabel = new Label("");
+	private BufferedImage bufferedImage;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -126,19 +133,26 @@ public class Main extends Application {
 		VBox left = new VBox();
 		VBox right = new VBox();
 		Button createPaintingButton = new Button("Create Painting");
-		
+		Button loadPaintingButton = new Button("Load Painting Image");
+
 		paintingPage.setBottom(homeNavButton);
 
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
 		Label paintingLabel = new Label("Painting");
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox,errorLabel);
+				reservePriceBox, bidsAllowedBox, heightBox, widthBox, errorLabel);
 
+		right.getChildren().addAll(loadPaintingButton);
 		createPaintingButton.setOnAction(event -> {
 			createPainting();
 
 		});
 
+		loadPaintingButton.setOnAction(event -> {
+			imageLoader();;
+
+		});
+		
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
 		});
@@ -158,16 +172,23 @@ public class Main extends Application {
 		VBox left = new VBox();
 		VBox right = new VBox();
 		Button createSculptureButton = new Button("Create Sculpture");
+		Button loadSculptureButton = new Button("Load Sculpture Image");
 
 		sculpturePage.setBottom(homeNavButton);
-		
+
 		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
 		Label sculptureLabel = new Label("Sculpture");
 		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox,depthBox,materialBox,errorLabel);
+				reservePriceBox, bidsAllowedBox, heightBox, widthBox, depthBox, materialBox, errorLabel);
 
+		right.getChildren().addAll(loadSculptureButton);
 		createSculptureButton.setOnAction(event -> {
 			createSculpture();
+
+		});
+		
+		loadSculptureButton.setOnAction(event -> {
+			imageLoader();;
 
 		});
 
@@ -182,50 +203,72 @@ public class Main extends Application {
 
 	public void createPainting() {
 		try {
-			String uploader = uploaderBox.getText();
+			uploader = uploaderBox.getText();
 			title = titleBox.getText();
-			String creatorName = creatorNameBox.getText();
-			String year = yearBox.getText();
-			double reservePrice = Double.parseDouble(reservePriceBox.getText());
-			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
+			creatorName = creatorNameBox.getText();
+			year = yearBox.getText();
+			reservePrice = Double.parseDouble(reservePriceBox.getText());
+			bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
 			Date date = new Date();
-			double height = Double.parseDouble(heightBox.getText());
-			double width = Double.parseDouble(widthBox.getText());
+			height = Double.parseDouble(heightBox.getText());
+			width = Double.parseDouble(widthBox.getText());
 
-			Painting test = new Painting(uploader, title, image, creatorName, year, reservePrice, bidsAllowed, date,
+			Painting painting = new Painting(uploader, title, image, creatorName, year, reservePrice, bidsAllowed, date,
 					height, width);
 
-			Artwork.artworkList.add(test);
+			Artwork.artworkList.add(painting);
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Error, Please do not leave a field empty");
 		}
 
 	}
 
-	
 	public void createSculpture() {
 		try {
-			String uploader = uploaderBox.getText();
+			uploader = uploaderBox.getText();
 			title = titleBox.getText();
-			String creatorName = creatorNameBox.getText();
-			String year = yearBox.getText();
-			double reservePrice = Double.parseDouble(reservePriceBox.getText());
-			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
+			creatorName = creatorNameBox.getText();
+			year = yearBox.getText();
+			reservePrice = Double.parseDouble(reservePriceBox.getText());
+			bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
 			Date date = new Date();
-			double height = Double.parseDouble(heightBox.getText());
-			double width = Double.parseDouble(widthBox.getText());
+			height = Double.parseDouble(heightBox.getText());
+			width = Double.parseDouble(widthBox.getText());
+			depth = Double.parseDouble(depthBox.getText());
+			material = materialBox.getText();
 
-			Painting test = new Painting(uploader, title, image, creatorName, year, reservePrice, bidsAllowed, date,
-					height, width);
+			Sculpture sculpture = new Sculpture(uploader, title, image, creatorName, year, reservePrice, bidsAllowed,
+					date, height, width, depth, material);
 
-			Artwork.artworkList.add(test);
+			Artwork.artworkList.add(sculpture);
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Error, Please do not leave a field empty");
 		}
 
 	}
-	
-	
+
+	public void imageLoader() {
+		FileChooser imageFinder = new FileChooser();
+
+		// Filters for extensions (PNGs and JPGs)
+		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+		imageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+		// Window Opener
+		File file = imageFinder.showOpenDialog(null);
+
+		try {
+			bufferedImage = ImageIO.read(file);
+			image = SwingFXUtils.toFXImage(bufferedImage, null);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Unable to load " + file, e);
+		} catch (IllegalArgumentException e) {
+			System.out.println("Error, No image selected");
+		}
+
+	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
