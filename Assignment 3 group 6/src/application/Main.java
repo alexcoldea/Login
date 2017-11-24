@@ -40,7 +40,7 @@ public class Main extends Application {
 	private TextField widthBox = new TextField();
 	private TextField depthBox = new TextField();
 	private TextField materialBox = new TextField();
-	private ImageView myImageView = new ImageView();
+	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
 
 	private String uploader;
@@ -128,12 +128,12 @@ public class Main extends Application {
 	public Scene navigatePainting() {
 		BorderPane paintingPage = new BorderPane();
 		Scene scene = new Scene(paintingPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
-		Label paintingPageLabel = new Label("Painting Page (Place Holder)");
-		paintingPage.setCenter(paintingPageLabel);
+		paintingPage.setCenter(imageViewer);
 		VBox left = new VBox();
 		VBox right = new VBox();
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
+		Button loadImageTestButton = new Button("View test image");
 
 		paintingPage.setBottom(homeNavButton);
 
@@ -142,17 +142,24 @@ public class Main extends Application {
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
 				reservePriceBox, bidsAllowedBox, heightBox, widthBox, errorLabel);
 
-		right.getChildren().addAll(loadPaintingButton);
+		right.getChildren().addAll(loadPaintingButton, loadImageTestButton);
 		createPaintingButton.setOnAction(event -> {
 			createPainting();
 
 		});
 
-		loadPaintingButton.setOnAction(event -> {
-			imageLoader();;
+		loadImageTestButton.setOnAction(event -> {
+			imageViewer.setImage(image);
+			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 
 		});
-		
+
+		loadPaintingButton.setOnAction(event -> {
+			imageLoader();
+
+		});
+
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
 		});
@@ -167,13 +174,12 @@ public class Main extends Application {
 
 		BorderPane sculpturePage = new BorderPane();
 		Scene scene = new Scene(sculpturePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
-		Label sculpturePageLabel = new Label("Sculpture Page (Place Holder)");
-		sculpturePage.setCenter(sculpturePageLabel);
+		sculpturePage.setCenter(imageViewer);
 		VBox left = new VBox();
 		VBox right = new VBox();
 		Button createSculptureButton = new Button("Create Sculpture");
 		Button loadSculptureButton = new Button("Load Sculpture Image");
-
+		Button loadImageTestButton = new Button("View test image");
 		sculpturePage.setBottom(homeNavButton);
 
 		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
@@ -181,14 +187,21 @@ public class Main extends Application {
 		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
 				reservePriceBox, bidsAllowedBox, heightBox, widthBox, depthBox, materialBox, errorLabel);
 
-		right.getChildren().addAll(loadSculptureButton);
+		right.getChildren().addAll(loadSculptureButton, loadImageTestButton);
 		createSculptureButton.setOnAction(event -> {
 			createSculpture();
 
 		});
+
+		loadImageTestButton.setOnAction(event -> {
+			imageViewer.setImage(image);
+			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+
+		});
 		
 		loadSculptureButton.setOnAction(event -> {
-			imageLoader();;
+			imageLoader();
 
 		});
 
