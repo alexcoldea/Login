@@ -53,16 +53,7 @@ public class Main extends Application {
 	private Label imageErrorLabel = new Label("");
 	private Label testLabel = new Label("test label");
 	private Label testLabel2 = new Label("test label2");
-	private Label uploaderLabel = new Label("Uploader:");
-	private Label titleLabel = new Label("Title:");
-	private Label creatorNameLabel = new Label("Creator Name:");
-	private Label yearLabel = new Label("Year Created:");
-	private Label reservePriceLabel = new Label("Reserve Price:");
-	private Label bidsAllowedLabel = new Label("Number of Bids Allowed:");
-	private Label heightLabel = new Label("Height:");
-	private Label widthLabel = new Label("Width:");
-	private Label depthLabel = new Label("Depth:");
-	private Label materialLabel = new Label("Material:");
+
 	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
 	public static String photoLocation;
@@ -165,6 +156,16 @@ public class Main extends Application {
 		left.setPadding(paddingInset);
 		right.setPadding(paddingInset);
 		bottom.setPadding(paddingInset);
+
+		Label uploaderLabel = new Label("Uploader:");
+		Label titleLabel = new Label("Title:");
+		Label creatorNameLabel = new Label("Creator Name:");
+		Label yearLabel = new Label("Year Created:");
+		Label reservePriceLabel = new Label("Reserve Price:");
+		Label bidsAllowedLabel = new Label("Number of Bids Allowed:");
+		Label heightLabel = new Label("Height:");
+		Label widthLabel = new Label("Width:");
+
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
@@ -173,7 +174,7 @@ public class Main extends Application {
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderLabel, uploaderBox, titleLabel, titleBox,
 				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, textFieldErrorLabel);
-		right.getChildren().addAll(loadPaintingButton,imageErrorLabel, testLabel, testLabel2);
+		right.getChildren().addAll(loadPaintingButton, imageErrorLabel, testLabel, testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createPaintingButton.setOnAction(event -> {
@@ -206,6 +207,18 @@ public class Main extends Application {
 		VBox left = new VBox();
 		VBox right = new VBox();
 		VBox bottom = new VBox();
+
+		Label uploaderLabel = new Label("Uploader:");
+		Label titleLabel = new Label("Title:");
+		Label creatorNameLabel = new Label("Creator Name:");
+		Label yearLabel = new Label("Year Created:");
+		Label reservePriceLabel = new Label("Reserve Price:");
+		Label bidsAllowedLabel = new Label("Number of Bids Allowed:");
+		Label heightLabel = new Label("Height:");
+		Label widthLabel = new Label("Width:");
+		Label depthLabel = new Label("Depth:");
+		Label materialLabel = new Label("Material:");
+
 		left.setSpacing(VBOX_SPACING);
 		right.setSpacing(VBOX_SPACING);
 		left.setPadding(paddingInset);
@@ -220,7 +233,7 @@ public class Main extends Application {
 				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox,
 				materialLabel, materialBox, textFieldErrorLabel);
-		right.getChildren().addAll(loadSculptureButton,imageErrorLabel, testLabel, testLabel2);
+		right.getChildren().addAll(loadSculptureButton, imageErrorLabel, testLabel, testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createSculptureButton.setOnAction(event -> {
@@ -256,7 +269,7 @@ public class Main extends Application {
 			Date date = new Date();
 			double height = Double.parseDouble(heightBox.getText());
 			double width = Double.parseDouble(widthBox.getText());
-			Save.saveImage(title,bufferedImage);
+			Save.saveImage(title, bufferedImage);
 			Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 					bidsAllowed, date, height, width);
 
@@ -283,7 +296,7 @@ public class Main extends Application {
 			double width = Double.parseDouble(widthBox.getText());
 			double depth = Double.parseDouble(depthBox.getText());
 			String material = materialBox.getText();
-			Save.saveImage(title,bufferedImage);
+			Save.saveImage(title, bufferedImage);
 			Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 					bidsAllowed, date, height, width, depth, material);
 
@@ -305,7 +318,7 @@ public class Main extends Application {
 		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
 		imageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
-		//reads selected files
+		// reads selected files
 		File file = imageFinder.showOpenDialog(null);
 
 		try {
@@ -321,18 +334,16 @@ public class Main extends Application {
 		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 	}
 
-
-	
-	//resets all variables and labels that have changed 
-	public void goHome(){
+	// resets all variables and labels that have changed
+	public void goHome() {
 		stage.setScene(homeScene);
 		stage.setTitle("Home");
 		textFieldErrorLabel.setText("");
 		imageErrorLabel.setText("");
 		imageViewer = null;
-		
+
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
