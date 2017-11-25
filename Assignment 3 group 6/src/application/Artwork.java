@@ -12,7 +12,7 @@ public class Artwork {
 
 	protected String title;
 	protected String uploader;
-	protected Image photo;
+	protected String photo;
 	protected String creatorName;
 	protected String year;
 	protected double reservePrice;
@@ -24,7 +24,7 @@ public class Artwork {
 	public static ArrayList<Artwork> artworkList = new ArrayList<Artwork>();
 	public static ArrayList<Artwork> usersArtworkList = new ArrayList<Artwork>();
 
-	public Artwork(String uploader, String title, Image photo, String creatorName, String year, double reservePrice, int bidsAllowed,
+	public Artwork(String uploader, String title, String photo, String creatorName, String year, double reservePrice, int bidsAllowed,
 			Date date) {
 		this.date = date;
 		this.uploader = uploader;
@@ -37,7 +37,7 @@ public class Artwork {
 		
 	}
 
-	public Artwork(String uploader, String title, Image photo, String creatorName, String year, double reservePrice, int bidsAllowed,
+	public Artwork(String uploader, String title, String photo, String creatorName, String year, double reservePrice, int bidsAllowed,
 			Date date, String description) {
 		this.date = date;
 		this.title = title;
@@ -55,7 +55,7 @@ public class Artwork {
 		return uploader;
 	}
 
-	public Image getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 

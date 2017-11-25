@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.geometry.Insets;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -26,10 +27,14 @@ public class Main extends Application {
 	final int PANE_SIZE_HEIGHT = 1000;
 	final int DISPLAY_IMAGE_WIDTH = 100;
 	final int DISPLAY_IMAGE_HEIGHT = 100;
+	final int VBOX_SPACING = 5;
+	final int PADDING = 5;
+
 	private Scene scene;
 	private Stage stage;
 	private Scene homeScene;
 	private Image image;
+
 	private TextField uploaderBox = new TextField();
 	private TextField titleBox = new TextField();
 	private TextField creatorNameBox = new TextField();
@@ -42,7 +47,22 @@ public class Main extends Application {
 	private TextField materialBox = new TextField();
 	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
+	private Label errorLabel = new Label("");
+	private Label testLabel = new Label("test label");
+	private Label testLabel2 = new Label("test label2");
+	private Label uploaderLabel = new Label("Uploader:");
+	private Label titleLabel = new Label("Title:");
+	private Label creatorNameLabel = new Label("Creator Name:");
+	private Label yearLabel = new Label("Year Created:");
+	private Label reservePriceLabel = new Label("Reserve Price:");
+	private Label bidsAllowedLabel = new Label("Number of Bids Allowed:");
+	private Label heightLabel = new Label("Height:");
+	private Label widthLabel = new Label("Width:");
+	private Label depthLabel = new Label("Depth:");
+	private Label materialLabel = new Label("Material:");
+	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
+	private String photoLocation;
 	private String uploader;
 	private String title;
 	private String creatorName;
@@ -53,7 +73,7 @@ public class Main extends Application {
 	private double width;
 	private double depth;
 	private String material;
-	private Label errorLabel = new Label("");
+
 	private BufferedImage bufferedImage;
 
 	@Override
@@ -63,6 +83,10 @@ public class Main extends Application {
 			BorderPane root = new BorderPane();
 			VBox left = new VBox();
 			VBox right = new VBox();
+			left.setSpacing(VBOX_SPACING);
+			right.setSpacing(VBOX_SPACING);
+			left.setPadding(paddingInset);
+			right.setPadding(paddingInset);
 			Label homePageLabel = new Label("Home Page (Place Holder)");
 			root.setLeft(left);
 			root.setRight(right);
@@ -83,6 +107,7 @@ public class Main extends Application {
 			scene = new Scene(root, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 			homeScene = scene;
 
+			stage.setTitle("Home");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -98,13 +123,22 @@ public class Main extends Application {
 		sellPage.setCenter(sellPageLabel);
 		VBox left = new VBox();
 		VBox right = new VBox();
-		sellPage.setLeft(left);
-		sellPage.setRight(right);
+		VBox bottom = new VBox();
+		left.setSpacing(VBOX_SPACING);
+		right.setSpacing(VBOX_SPACING);
+		left.setPadding(paddingInset);
+		right.setPadding(paddingInset);
+		bottom.setPadding(paddingInset);
+
 		Button paintingNavButton = new Button("Sell Painting");
 		Button sculptureNavButton = new Button("Sell Sculpture");
-		sellPage.setBottom(homeNavButton);
+
 		paintingNavButton.setMaxWidth(Double.MAX_VALUE);
 		sculptureNavButton.setMaxWidth(Double.MAX_VALUE);
+
+		left.getChildren().addAll(paintingNavButton);
+		right.getChildren().addAll(sculptureNavButton);
+		bottom.getChildren().addAll(homeNavButton);
 
 		paintingNavButton.setOnAction(event -> {
 			stage.setScene(navigatePainting());
@@ -117,11 +151,13 @@ public class Main extends Application {
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
+			stage.setTitle("Home");
 		});
 
-		left.getChildren().addAll(paintingNavButton);
-		right.getChildren().addAll(sculptureNavButton);
-
+		stage.setTitle("Sell");
+		sellPage.setLeft(left);
+		sellPage.setRight(right);
+		sellPage.setBottom(bottom);
 		return scene;
 	}
 
@@ -131,18 +167,24 @@ public class Main extends Application {
 		paintingPage.setCenter(imageViewer);
 		VBox left = new VBox();
 		VBox right = new VBox();
+		VBox bottom = new VBox();
+		left.setSpacing(VBOX_SPACING);
+		right.setSpacing(VBOX_SPACING);
+		left.setPadding(paddingInset);
+		right.setPadding(paddingInset);
+		bottom.setPadding(paddingInset);
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
 		Button loadImageTestButton = new Button("View test image");
-
-		paintingPage.setBottom(homeNavButton);
-
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
-		Label paintingLabel = new Label("Painting");
-		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox, errorLabel);
 
-		right.getChildren().addAll(loadPaintingButton, loadImageTestButton);
+		Label paintingLabel = new Label("Painting");
+		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderLabel, uploaderBox, titleLabel, titleBox,
+				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
+				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, errorLabel);
+		right.getChildren().addAll(loadPaintingButton, loadImageTestButton, testLabel, testLabel2);
+		bottom.getChildren().addAll(homeNavButton);
+
 		createPaintingButton.setOnAction(event -> {
 			createPainting();
 
@@ -162,10 +204,13 @@ public class Main extends Application {
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
+			stage.setTitle("Home");
 		});
 
 		paintingPage.setLeft(left);
 		paintingPage.setRight(right);
+		paintingPage.setBottom(bottom);
+		stage.setTitle("Painting");
 		return scene;
 
 	}
@@ -177,17 +222,25 @@ public class Main extends Application {
 		sculpturePage.setCenter(imageViewer);
 		VBox left = new VBox();
 		VBox right = new VBox();
+		VBox bottom = new VBox();
+		left.setSpacing(VBOX_SPACING);
+		right.setSpacing(VBOX_SPACING);
+		left.setPadding(paddingInset);
+		right.setPadding(paddingInset);
+		bottom.setPadding(paddingInset);
 		Button createSculptureButton = new Button("Create Sculpture");
 		Button loadSculptureButton = new Button("Load Sculpture Image");
 		Button loadImageTestButton = new Button("View test image");
-		sculpturePage.setBottom(homeNavButton);
-
-		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
 		Label sculptureLabel = new Label("Sculpture");
-		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox, depthBox, materialBox, errorLabel);
+		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
 
+		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderLabel, uploaderBox, titleLabel,
+				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
+				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox,
+				materialLabel, materialBox, errorLabel);
 		right.getChildren().addAll(loadSculptureButton, loadImageTestButton);
+		bottom.getChildren().addAll(homeNavButton);
+
 		createSculptureButton.setOnAction(event -> {
 			createSculpture();
 
@@ -199,7 +252,7 @@ public class Main extends Application {
 			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 
 		});
-		
+
 		loadSculptureButton.setOnAction(event -> {
 			imageLoader();
 
@@ -207,14 +260,18 @@ public class Main extends Application {
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
+			stage.setTitle("Home");
 		});
 
 		sculpturePage.setLeft(left);
 		sculpturePage.setRight(right);
+		sculpturePage.setBottom(bottom);
+		stage.setTitle("Sculpture");
 		return scene;
 	}
 
 	public void createPainting() {
+
 		try {
 			uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -225,10 +282,12 @@ public class Main extends Application {
 			Date date = new Date();
 			height = Double.parseDouble(heightBox.getText());
 			width = Double.parseDouble(widthBox.getText());
+			saveImage();
+			Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
+					bidsAllowed, date, height, width);
 
-			Painting painting = new Painting(uploader, title, image, creatorName, year, reservePrice, bidsAllowed, date,
-					height, width);
-
+			testLabel.setText(painting.toString());
+			testLabel2.setText(photoLocation);
 			Artwork.artworkList.add(painting);
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Error, Please do not leave a field empty");
@@ -237,6 +296,7 @@ public class Main extends Application {
 	}
 
 	public void createSculpture() {
+
 		try {
 			uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -249,10 +309,12 @@ public class Main extends Application {
 			width = Double.parseDouble(widthBox.getText());
 			depth = Double.parseDouble(depthBox.getText());
 			material = materialBox.getText();
+			saveImage();
+			Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
+					bidsAllowed, date, height, width, depth, material);
 
-			Sculpture sculpture = new Sculpture(uploader, title, image, creatorName, year, reservePrice, bidsAllowed,
-					date, height, width, depth, material);
-
+			testLabel.setText(sculpture.toString());
+			testLabel2.setText(photoLocation);
 			Artwork.artworkList.add(sculpture);
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Error, Please do not leave a field empty");
@@ -282,11 +344,12 @@ public class Main extends Application {
 
 	}
 
-	
-	/*public void saveImage(){
-		String imagePath = System.getProperty("user.dir") + "/Artwork Photos/a image.jpg";
-		//directory checker
-		//System.out.println(System.getProperty("user.dir"));
+	public void saveImage() {
+		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+		System.out.println(imagePath);
+		photoLocation = imagePath;
+		// directory checker
+		// System.out.println(System.getProperty("user.dir"));
 		File file = new File(imagePath);
 		try {
 			ImageIO.write(bufferedImage, "jpg", file);
@@ -294,13 +357,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	};
-	
 
-	*/
-	
-	
-	
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
