@@ -28,16 +28,22 @@ public class Painting extends Artwork {
 	private double getWidth() {
 		return width;
 	}
+	
+	public String getPaintingInformation() {
+		return (getUploader() + "," + getTitle() + "," + getCreatorName() + "," + getYear() + "," + getReservePrice() 
+				+ "," + getBidsAllowed() + "," + getHeight() + "," + getWidth() + "," + getDate() + ","
+				+ getDescription());
+	}
 
 	public String toString() {
 		String result = "";
 		if (getDescription() == null) {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m" + "\n" + "Date: " + getDate() + "\n";
 		} else {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m" + "\n" + "Date: " + getDate() + "\n"
 					+ "Description: " + getDescription() + "\n";
 		}
