@@ -25,8 +25,8 @@ public class Main extends Application {
 
 	final int PANE_SIZE_WIDTH = 1000;
 	final int PANE_SIZE_HEIGHT = 1000;
-	final int DISPLAY_IMAGE_WIDTH = 100;
-	final int DISPLAY_IMAGE_HEIGHT = 100;
+	final int DISPLAY_IMAGE_WIDTH = 250;
+	final int DISPLAY_IMAGE_HEIGHT = 250;
 	final int VBOX_SPACING = 5;
 	final int PADDING = 5;
 
@@ -47,7 +47,8 @@ public class Main extends Application {
 	private TextField materialBox = new TextField();
 	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
-	private Label errorLabel = new Label("");
+	private Label textFieldErrorLabel = new Label("");
+	private Label imageErrorLabel = new Label("");
 	private Label testLabel = new Label("test label");
 	private Label testLabel2 = new Label("test label2");
 	private Label uploaderLabel = new Label("Uploader:");
@@ -73,6 +74,7 @@ public class Main extends Application {
 	private double width;
 	private double depth;
 	private String material;
+	private Date date;
 
 	private BufferedImage bufferedImage;
 
@@ -150,8 +152,7 @@ public class Main extends Application {
 		});
 
 		homeNavButton.setOnAction(event -> {
-			stage.setScene(homeScene);
-			stage.setTitle("Home");
+			goHome();
 		});
 
 		stage.setTitle("Sell");
@@ -175,25 +176,17 @@ public class Main extends Application {
 		bottom.setPadding(paddingInset);
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
-		Button loadImageTestButton = new Button("View test image");
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
 
 		Label paintingLabel = new Label("Painting");
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderLabel, uploaderBox, titleLabel, titleBox,
 				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
-				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, errorLabel);
-		right.getChildren().addAll(loadPaintingButton, loadImageTestButton, testLabel, testLabel2);
+				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, textFieldErrorLabel);
+		right.getChildren().addAll(loadPaintingButton,imageErrorLabel, testLabel, testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createPaintingButton.setOnAction(event -> {
 			createPainting();
-
-		});
-
-		loadImageTestButton.setOnAction(event -> {
-			imageViewer.setImage(image);
-			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 
 		});
 
@@ -203,8 +196,7 @@ public class Main extends Application {
 		});
 
 		homeNavButton.setOnAction(event -> {
-			stage.setScene(homeScene);
-			stage.setTitle("Home");
+			goHome();
 		});
 
 		paintingPage.setLeft(left);
@@ -230,26 +222,18 @@ public class Main extends Application {
 		bottom.setPadding(paddingInset);
 		Button createSculptureButton = new Button("Create Sculpture");
 		Button loadSculptureButton = new Button("Load Sculpture Image");
-		Button loadImageTestButton = new Button("View test image");
 		Label sculptureLabel = new Label("Sculpture");
 		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
 
 		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderLabel, uploaderBox, titleLabel,
 				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox,
-				materialLabel, materialBox, errorLabel);
-		right.getChildren().addAll(loadSculptureButton, loadImageTestButton);
+				materialLabel, materialBox, textFieldErrorLabel);
+		right.getChildren().addAll(loadSculptureButton,imageErrorLabel, testLabel, testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createSculptureButton.setOnAction(event -> {
 			createSculpture();
-
-		});
-
-		loadImageTestButton.setOnAction(event -> {
-			imageViewer.setImage(image);
-			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 
 		});
 
@@ -259,8 +243,7 @@ public class Main extends Application {
 		});
 
 		homeNavButton.setOnAction(event -> {
-			stage.setScene(homeScene);
-			stage.setTitle("Home");
+			goHome();
 		});
 
 		sculpturePage.setLeft(left);
@@ -290,7 +273,7 @@ public class Main extends Application {
 			testLabel2.setText(photoLocation);
 			Artwork.artworkList.add(painting);
 		} catch (NumberFormatException e) {
-			errorLabel.setText("Error, Please do not leave a field empty");
+			textFieldErrorLabel.setText("Error, Please do not leave a field empty");
 		}
 
 	}
@@ -304,7 +287,7 @@ public class Main extends Application {
 			year = yearBox.getText();
 			reservePrice = Double.parseDouble(reservePriceBox.getText());
 			bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
-			Date date = new Date();
+			date = new Date();
 			height = Double.parseDouble(heightBox.getText());
 			width = Double.parseDouble(widthBox.getText());
 			depth = Double.parseDouble(depthBox.getText());
@@ -317,7 +300,7 @@ public class Main extends Application {
 			testLabel2.setText(photoLocation);
 			Artwork.artworkList.add(sculpture);
 		} catch (NumberFormatException e) {
-			errorLabel.setText("Error, Please do not leave a field empty");
+			textFieldErrorLabel.setText("Error, Please do not leave a field empty");
 		}
 
 	}
@@ -339,9 +322,13 @@ public class Main extends Application {
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
-			System.out.println("Error, No image selected");
+			imageErrorLabel.setText("Error, No image selected");
 		}
 
+		
+		imageViewer.setImage(image);
+		imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 	}
 
 	public void saveImage() {
@@ -358,6 +345,28 @@ public class Main extends Application {
 		}
 	};
 
+	
+	//resets all variables and labels that have changed 
+	public void goHome(){
+		stage.setScene(homeScene);
+		stage.setTitle("Home");
+		uploader = null;
+		title = null;
+		creatorName = null;
+		year = null;
+		reservePrice = 0;
+		bidsAllowed = 0;
+		date = null;
+		height = 0;
+		width = 0;
+		depth = 0;
+		material = null;
+		textFieldErrorLabel.setText("");
+		imageErrorLabel.setText("");
+		imageViewer = null;
+		
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
