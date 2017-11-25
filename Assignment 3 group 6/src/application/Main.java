@@ -308,6 +308,7 @@ public class Main extends Application {
 	}
 
 	public void imageLoader() {
+		// Window Opener
 		FileChooser imageFinder = new FileChooser();
 
 		// Filters for extensions (PNGs and JPGs)
@@ -315,7 +316,7 @@ public class Main extends Application {
 		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
 		imageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
-		// Window Opener
+		//reads selected files
 		File file = imageFinder.showOpenDialog(null);
 
 		try {
@@ -326,8 +327,6 @@ public class Main extends Application {
 		} catch (IllegalArgumentException e) {
 			imageErrorLabel.setText("Error, No image selected");
 		}
-
-		
 		imageViewer.setImage(image);
 		imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
 		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
