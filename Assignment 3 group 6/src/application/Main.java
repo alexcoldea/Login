@@ -282,6 +282,25 @@ public class Main extends Application {
 
 	}
 
+	
+	/*public void saveImage(){
+		String imagePath = System.getProperty("user.dir") + "/Artwork Photos/a image.jpg";
+		//directory checker
+		//System.out.println(System.getProperty("user.dir"));
+		File file = new File(imagePath);
+		try {
+			ImageIO.write(bufferedImage, "jpg", file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	};
+	
+
+	*/
+	
+	
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
