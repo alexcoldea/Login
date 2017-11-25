@@ -30,8 +30,8 @@ public class Painting extends Artwork {
 	}
 	
 	public String getPaintingInformation() {
-		return (getUploader() + "," + getTitle() + "," + getCreatorName() + "," + getYear() + "," + getReservePrice() 
-				+ "," + getBidsAllowed() + "," + getHeight() + "," + getWidth() + "," + getDate() + ","
+		return (getUploader()+ "," + getBidsAllowed() + "," + getTitle() + "," + getCreatorName() + "," + getYear() 
+				+ "," + getReservePrice() + "," + getHeight() + "," + getWidth() + "," + getDate() + ","
 				+ getDescription());
 	}
 
