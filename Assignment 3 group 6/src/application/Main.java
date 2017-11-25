@@ -66,17 +66,6 @@ public class Main extends Application {
 	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
 	public static String photoLocation;
-	private String uploader;
-	private String title;
-	private String creatorName;
-	private String year;
-	private double reservePrice;
-	private int bidsAllowed;
-	private double height;
-	private double width;
-	private double depth;
-	private String material;
-	private Date date;
 
 	private BufferedImage bufferedImage;
 
@@ -258,15 +247,15 @@ public class Main extends Application {
 	public void createPainting() {
 
 		try {
-			uploader = uploaderBox.getText();
-			title = titleBox.getText();
-			creatorName = creatorNameBox.getText();
-			year = yearBox.getText();
-			reservePrice = Double.parseDouble(reservePriceBox.getText());
-			bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
+			String uploader = uploaderBox.getText();
+			String title = titleBox.getText();
+			String creatorName = creatorNameBox.getText();
+			String year = yearBox.getText();
+			double reservePrice = Double.parseDouble(reservePriceBox.getText());
+			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
 			Date date = new Date();
-			height = Double.parseDouble(heightBox.getText());
-			width = Double.parseDouble(widthBox.getText());
+			double height = Double.parseDouble(heightBox.getText());
+			double width = Double.parseDouble(widthBox.getText());
 			Save.saveImage(title,bufferedImage);
 			Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 					bidsAllowed, date, height, width);
@@ -283,17 +272,17 @@ public class Main extends Application {
 	public void createSculpture() {
 
 		try {
-			uploader = uploaderBox.getText();
-			title = titleBox.getText();
-			creatorName = creatorNameBox.getText();
-			year = yearBox.getText();
-			reservePrice = Double.parseDouble(reservePriceBox.getText());
-			bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
-			date = new Date();
-			height = Double.parseDouble(heightBox.getText());
-			width = Double.parseDouble(widthBox.getText());
-			depth = Double.parseDouble(depthBox.getText());
-			material = materialBox.getText();
+			String uploader = uploaderBox.getText();
+			String title = titleBox.getText();
+			String creatorName = creatorNameBox.getText();
+			String year = yearBox.getText();
+			double reservePrice = Double.parseDouble(reservePriceBox.getText());
+			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
+			Date date = new Date();
+			double height = Double.parseDouble(heightBox.getText());
+			double width = Double.parseDouble(widthBox.getText());
+			double depth = Double.parseDouble(depthBox.getText());
+			String material = materialBox.getText();
 			Save.saveImage(title,bufferedImage);
 			Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 					bidsAllowed, date, height, width, depth, material);
@@ -338,17 +327,6 @@ public class Main extends Application {
 	public void goHome(){
 		stage.setScene(homeScene);
 		stage.setTitle("Home");
-		uploader = null;
-		title = null;
-		creatorName = null;
-		year = null;
-		reservePrice = 0;
-		bidsAllowed = 0;
-		date = null;
-		height = 0;
-		width = 0;
-		depth = 0;
-		material = null;
 		textFieldErrorLabel.setText("");
 		imageErrorLabel.setText("");
 		imageViewer = null;
