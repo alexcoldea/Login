@@ -1,8 +1,6 @@
 package application;
 import java.util.*;
 
-import javafx.scene.image.Image;
-
 public class Sculpture extends Artwork {
 
 	private double depth;
@@ -10,9 +8,9 @@ public class Sculpture extends Artwork {
 	public static ArrayList<Artwork> additionalPhotos = new ArrayList();
 
 	// Sculpture without description or additional photos
-	public Sculpture(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
+	public Sculpture(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width, double depth, String material) {
-		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date);
+		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
 		this.width = width;
 		this.depth = depth;
@@ -20,10 +18,10 @@ public class Sculpture extends Artwork {
 	}
 
 	// sculpture with description but no additional photos
-	public Sculpture(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
+	public Sculpture(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width, double depth, String material,
 			String description) {
-		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date, description);
+		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date, description);
 		this.height = height;
 		this.width = width;
 		this.depth = depth;
@@ -47,7 +45,7 @@ public class Sculpture extends Artwork {
 	}
 	
 	public String getSculptureInformation() {
-		return (getUploader()+ "," + getBidsAllowed() + ","+ getPhoto() + "," + getTitle() + "," 
+		return (getUploader()+ "," + getBidsAllowed() + ","+ getPhotoLocation() + "," + getTitle() + "," 
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," 
 				+ getWidth() + "," + getDepth() + "," + getMaterial() + "," + getDate() + "," + getDescription());
 	}

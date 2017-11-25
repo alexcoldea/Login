@@ -1,22 +1,21 @@
 package application;
 import java.util.*;
 
-import javafx.scene.image.Image;
 
 public class Painting extends Artwork {
 
 	// Painting without description
-	public Painting(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
+	public Painting(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width) {
-		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date);
+		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
 		this.width = width;
 	}
 
 	// Painting with description
-	public Painting(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
+	public Painting(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width, String description) {
-		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date, description);
+		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date, description);
 		this.height = height;
 		this.width = width;
 	}
@@ -30,7 +29,7 @@ public class Painting extends Artwork {
 	}
 	
 	public String getPaintingInformation() {
-		return (getUploader()+ "," + getBidsAllowed() + ","+ getPhoto() + "," + getTitle() + "," 
+		return (getUploader()+ "," + getBidsAllowed() + ","+ getPhotoLocation() + "," + getTitle() + "," 
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," 
 				+ getWidth() + "," + getDate() + "," + getDescription());
 	}

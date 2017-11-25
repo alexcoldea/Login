@@ -4,7 +4,6 @@ package application;
 
 import java.util.*;
 
-import javafx.scene.image.Image;
 /** @author Matthew Denholm
 * 	@version
 */
@@ -12,7 +11,7 @@ public class Artwork {
 
 	protected String title;
 	protected String uploader;
-	protected String photo;
+	protected String photoLocation;
 	protected String creatorName;
 	protected String year;
 	protected double reservePrice;
@@ -24,12 +23,12 @@ public class Artwork {
 	public static ArrayList<Artwork> artworkList = new ArrayList<Artwork>();
 	public static ArrayList<Artwork> usersArtworkList = new ArrayList<Artwork>();
 
-	public Artwork(String uploader, String title, String photo, String creatorName, String year, double reservePrice, int bidsAllowed,
+	public Artwork(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice, int bidsAllowed,
 			Date date) {
 		this.date = date;
 		this.uploader = uploader;
 		this.title = title;
-		this.photo = photo;
+		this.photoLocation = photoLocation;
 		this.creatorName = creatorName;
 		this.year = year;
 		this.reservePrice = reservePrice;
@@ -37,13 +36,13 @@ public class Artwork {
 		
 	}
 
-	public Artwork(String uploader, String title, String photo, String creatorName, String year, double reservePrice, int bidsAllowed,
+	public Artwork(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice, int bidsAllowed,
 			Date date, String description) {
 		this.date = date;
 		this.title = title;
 		this.uploader = uploader;
 		this.description = description;
-		this.photo = photo;
+		this.photoLocation = photoLocation;
 		this.creatorName = creatorName;
 		this.year = year;
 		this.reservePrice = reservePrice;
@@ -55,8 +54,8 @@ public class Artwork {
 		return uploader;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public String getPhotoLocation() {
+		return photoLocation;
 	}
 
 	public String getDescription() {
