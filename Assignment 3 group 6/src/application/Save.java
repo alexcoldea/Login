@@ -1,7 +1,6 @@
 package application;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.io.PrintWriter;
 
 import javax.imageio.ImageIO;
 
-import javafx.scene.image.Image;
 
 /**
  * This class in responsible for saving entities such as artworks and profiles.
@@ -18,6 +16,11 @@ import javafx.scene.image.Image;
  */
 public class Save {
 	//TODO: save artworks, edit artwork bids, save profiles
+	
+	
+	public static void saveProfile() {
+		
+	}
 	
 	public static void saveArtwork(Artwork artwork) {
 		
@@ -85,32 +88,18 @@ public class Save {
         }
 	}
 	
-	// I DON'T KNOW IF IT WORKS.
-	@SuppressWarnings("unused")
-	public static void saveImage(String title, BufferedImage photo) {
-		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
-		Main.photoLocation = imagePath;
-		File file = new File(imagePath);
+	
+	public static void saveImage(File file, BufferedImage photo) {
+
 		// Creates file if it doesn't exist.
-		if (!file.exists()) {
 			try {
-				//file.createNewFile();
 				ImageIO.write(photo, "jpg", file);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("Image already exists");
-			return;
+		
 		}
 		
-		/*// Saves image onto a file.
-		try {
-			ImageIO.write((RenderedImage) photo, "jpg", file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 		
 	}
-}
+

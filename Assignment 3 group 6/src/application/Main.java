@@ -269,13 +269,22 @@ public class Main extends Application {
 			Date date = new Date();
 			double height = Double.parseDouble(heightBox.getText());
 			double width = Double.parseDouble(widthBox.getText());
-			Save.saveImage(title, bufferedImage);
-			Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
-					bidsAllowed, date, height, width);
 
-			testLabel.setText(painting.toString());
-			testLabel2.setText(photoLocation);
-			Artwork.artworkList.add(painting);
+			String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+			photoLocation = imagePath;
+			File file = new File(imagePath);
+			if (!file.exists()) {
+				Save.saveImage(file, bufferedImage);
+				Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
+						bidsAllowed, date, height, width);
+
+				testLabel.setText(painting.toString());
+				testLabel2.setText(photoLocation);
+				Artwork.artworkList.add(painting);
+			} else {
+				imageErrorLabel.setText("Artwork already exists");
+			}
+
 		} catch (NumberFormatException e) {
 			textFieldErrorLabel.setText("Error, Please do not leave a field empty");
 		}
@@ -296,13 +305,21 @@ public class Main extends Application {
 			double width = Double.parseDouble(widthBox.getText());
 			double depth = Double.parseDouble(depthBox.getText());
 			String material = materialBox.getText();
-			Save.saveImage(title, bufferedImage);
-			Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
-					bidsAllowed, date, height, width, depth, material);
 
-			testLabel.setText(sculpture.toString());
-			testLabel2.setText(photoLocation);
-			Artwork.artworkList.add(sculpture);
+			String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+			photoLocation = imagePath;
+			File file = new File(imagePath);
+			if (!file.exists()) {
+				Save.saveImage(file, bufferedImage);
+				Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
+						bidsAllowed, date, height, width, depth, material);
+
+				testLabel.setText(sculpture.toString());
+				testLabel2.setText(photoLocation);
+				Artwork.artworkList.add(sculpture);
+			} else {
+				imageErrorLabel.setText("Artwork already exists");
+			}
 		} catch (NumberFormatException e) {
 			textFieldErrorLabel.setText("Error, Please do not leave a field empty");
 		}

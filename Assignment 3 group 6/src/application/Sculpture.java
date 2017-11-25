@@ -54,12 +54,12 @@ public class Sculpture extends Artwork {
 		String result = "";
 		if (getDescription() == null) {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m," + " Depth: " + getDepth() + "m,"
 					+ " Material: " + getMaterial() + "\n" + "Date: " + getDate() + "\n";
 		} else {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m," + " Depth: " + getDepth() + "m,"
 					+ " Material: " + getMaterial() + "\n" + "Date: " + getDate() + "\n" + "Description: "
 					+ getDescription() + "\n";
