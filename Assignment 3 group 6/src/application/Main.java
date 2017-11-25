@@ -26,10 +26,12 @@ public class Main extends Application {
 	final int PANE_SIZE_HEIGHT = 1000;
 	final int DISPLAY_IMAGE_WIDTH = 100;
 	final int DISPLAY_IMAGE_HEIGHT = 100;
+	
 	private Scene scene;
 	private Stage stage;
 	private Scene homeScene;
 	private Image image;
+	
 	private TextField uploaderBox = new TextField();
 	private TextField titleBox = new TextField();
 	private TextField creatorNameBox = new TextField();
@@ -42,7 +44,20 @@ public class Main extends Application {
 	private TextField materialBox = new TextField();
 	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
-
+	private Label errorLabel = new Label("");
+	private Label testLabel = new Label("test label");
+	private Label testLabel2 = new Label("test label2");
+	private Label uploaderLabel = new Label("Uploader:");
+	private Label titleLabel = new Label("Title:");
+	private Label creatorNameLabel = new Label("Creator Name:");
+	private Label yearLabel = new Label("Year Created:");
+	private Label reservePriceLabel = new Label("Reserve Price:");
+	private Label bidsAllowedLabel = new Label("Number of Bids Allowed:");
+	private Label heightLabel = new Label("Height:");
+	private Label widthLabel = new Label("Width:");
+	private Label depthLabel = new Label("Depth:");
+	private Label materialLabel = new Label("Material:");
+	
 	private String photoLocation;
 	private String uploader;
 	private String title;
@@ -54,9 +69,7 @@ public class Main extends Application {
 	private double width;
 	private double depth;
 	private String material;
-	private Label errorLabel = new Label("");
-	private Label testLabel = new Label("test label");
-	private Label testLabel2 = new Label("test label2");
+	
 	private BufferedImage bufferedImage;
 
 	@Override
@@ -85,7 +98,9 @@ public class Main extends Application {
 
 			scene = new Scene(root, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 			homeScene = scene;
-
+			
+			
+			stage.setTitle("Home");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -120,10 +135,12 @@ public class Main extends Application {
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
+			stage.setTitle("Home");
 		});
 
 		left.getChildren().addAll(paintingNavButton);
 		right.getChildren().addAll(sculptureNavButton);
+		stage.setTitle("Sell");
 
 		return scene;
 	}
@@ -142,8 +159,9 @@ public class Main extends Application {
 
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
 		Label paintingLabel = new Label("Painting");
-		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox, errorLabel);
+		left.getChildren().addAll(createPaintingButton, paintingLabel,uploaderLabel, uploaderBox, titleLabel, titleBox, 
+				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
+				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, errorLabel);
 
 		right.getChildren().addAll(loadPaintingButton, loadImageTestButton, testLabel, testLabel2);
 		createPaintingButton.setOnAction(event -> {
@@ -165,10 +183,12 @@ public class Main extends Application {
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
+			stage.setTitle("Home");
 		});
 
 		paintingPage.setLeft(left);
 		paintingPage.setRight(right);
+		stage.setTitle("Painting");
 		return scene;
 
 	}
@@ -187,8 +207,9 @@ public class Main extends Application {
 
 		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
 		Label sculptureLabel = new Label("Sculpture");
-		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
-				reservePriceBox, bidsAllowedBox, heightBox, widthBox, depthBox, materialBox, errorLabel);
+		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderLabel, uploaderBox, titleLabel, titleBox, 
+				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
+				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox, materialLabel, materialBox, errorLabel);
 
 		right.getChildren().addAll(loadSculptureButton, loadImageTestButton);
 		createSculptureButton.setOnAction(event -> {
@@ -210,10 +231,12 @@ public class Main extends Application {
 
 		homeNavButton.setOnAction(event -> {
 			stage.setScene(homeScene);
+			stage.setTitle("Home");
 		});
 
 		sculpturePage.setLeft(left);
 		sculpturePage.setRight(right);
+		stage.setTitle("Sculpture");
 		return scene;
 	}
 
