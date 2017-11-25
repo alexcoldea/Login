@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
 /**
  * This class initialises the Art-A-Tawe system.
  * 
- * @author 
+ * @author
  * @version 1.0
  */
 public class Main extends Application {
@@ -347,14 +347,15 @@ public class Main extends Application {
 		try {
 			bufferedImage = ImageIO.read(file);
 			image = SwingFXUtils.toFXImage(bufferedImage, null);
+			imageViewer.setImage(image);
+			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
 			imageErrorLabel.setText("Error, No image selected");
 		}
-		imageViewer.setImage(image);
-		imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+
 	}
 
 	// resets all variables and labels that have changed

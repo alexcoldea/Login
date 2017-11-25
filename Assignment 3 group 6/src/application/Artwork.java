@@ -4,7 +4,8 @@ package application;
 import java.util.*;
 
 /**
- * This class creates artwork objects that can be used on the Art-A-Tawe system. 
+ * This class creates artwork objects that can be used on the Art-A-Tawe system.
+ * 
  * @author Matthew Denholm
  * @version 1.0
  */
@@ -24,17 +25,25 @@ public class Artwork {
 	public static ArrayList<Artwork> artworkList = new ArrayList<Artwork>();
 	public static ArrayList<Artwork> usersArtworkList = new ArrayList<Artwork>();
 
-	
 	/**
-	 * Create an Artwork object without a description. 
-	 * @param uploader The uploader of the Artwork.
-	 * @param title The title of the Artwork.
-	 * @param photoLocation The path of where the Artwork is saved.
-	 * @param creatorName The name of the Artist who created the Artwork.
-	 * @param year The year the Artwork was created.
-	 * @param reservePrice The reserve price the Artwork is set at.
-	 * @param bidsAllowed The number of bids allowed on the Artwork.
-	 * @param date The date the Artwork was uploaded onto the Art-A-Tawe system.
+	 * Create an Artwork object without a description.
+	 * 
+	 * @param uploader
+	 *            The uploader of the Artwork.
+	 * @param title
+	 *            The title of the Artwork.
+	 * @param photoLocation
+	 *            The path of where the Artwork is saved.
+	 * @param creatorName
+	 *            The name of the Artist who created the Artwork.
+	 * @param year
+	 *            The year the Artwork was created.
+	 * @param reservePrice
+	 *            The reserve price the Artwork is set at.
+	 * @param bidsAllowed
+	 *            The number of bids allowed on the Artwork.
+	 * @param date
+	 *            The date the Artwork was uploaded onto the Art-A-Tawe system.
 	 */
 	public Artwork(String uploader, String title, String photoLocation, String creatorName, String year,
 			double reservePrice, int bidsAllowed, Date date) {
@@ -50,16 +59,26 @@ public class Artwork {
 	}
 
 	/**
-	 * Create an Artwork object with a description. 
-	 * @param uploader The uploader of the Artwork.
-	 * @param title The title of the Artwork.
-	 * @param photoLocation The path of where the Artwork is saved.
-	 * @param creatorName The name of the Artist who created the Artwork.
-	 * @param year The year the Artwork was created.
-	 * @param reservePrice The reserve price the Artwork is set at.
-	 * @param bidsAllowed The number of bids allowed on the Artwork.
-	 * @param date The date the Artwork was uploaded onto the Art-A-Tawe system.
-	 * @param description The description of the Artwork
+	 * Create an Artwork object with a description.
+	 * 
+	 * @param uploader
+	 *            The uploader of the Artwork.
+	 * @param title
+	 *            The title of the Artwork.
+	 * @param photoLocation
+	 *            The path of where the Artwork is saved.
+	 * @param creatorName
+	 *            The name of the Artist who created the Artwork.
+	 * @param year
+	 *            The year the Artwork was created.
+	 * @param reservePrice
+	 *            The reserve price the Artwork is set at.
+	 * @param bidsAllowed
+	 *            The number of bids allowed on the Artwork.
+	 * @param date
+	 *            The date the Artwork was uploaded onto the Art-A-Tawe system.
+	 * @param description
+	 *            The description of the Artwork
 	 */
 	public Artwork(String uploader, String title, String photoLocation, String creatorName, String year,
 			double reservePrice, int bidsAllowed, Date date, String description) {
