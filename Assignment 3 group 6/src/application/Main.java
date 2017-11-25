@@ -43,6 +43,7 @@ public class Main extends Application {
 	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
 
+	private String photoLocation;
 	private String uploader;
 	private String title;
 	private String creatorName;
@@ -54,6 +55,8 @@ public class Main extends Application {
 	private double depth;
 	private String material;
 	private Label errorLabel = new Label("");
+	private Label testLabel = new Label("test label");
+	private Label testLabel2 = new Label("test label2");
 	private BufferedImage bufferedImage;
 
 	@Override
@@ -142,7 +145,7 @@ public class Main extends Application {
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderBox, titleBox, creatorNameBox, yearBox,
 				reservePriceBox, bidsAllowedBox, heightBox, widthBox, errorLabel);
 
-		right.getChildren().addAll(loadPaintingButton, loadImageTestButton);
+		right.getChildren().addAll(loadPaintingButton, loadImageTestButton, testLabel, testLabel2);
 		createPaintingButton.setOnAction(event -> {
 			createPainting();
 
@@ -199,7 +202,7 @@ public class Main extends Application {
 			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 
 		});
-		
+
 		loadSculptureButton.setOnAction(event -> {
 			imageLoader();
 
@@ -215,6 +218,7 @@ public class Main extends Application {
 	}
 
 	public void createPainting() {
+
 		try {
 			uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -225,10 +229,12 @@ public class Main extends Application {
 			Date date = new Date();
 			height = Double.parseDouble(heightBox.getText());
 			width = Double.parseDouble(widthBox.getText());
+			saveImage();
+			Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
+					bidsAllowed, date, height, width);
 
-			Painting painting = new Painting(uploader, title, image, creatorName, year, reservePrice, bidsAllowed, date,
-					height, width);
-
+			testLabel.setText(painting.toString());
+			testLabel2.setText(photoLocation);
 			Artwork.artworkList.add(painting);
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Error, Please do not leave a field empty");
@@ -237,6 +243,7 @@ public class Main extends Application {
 	}
 
 	public void createSculpture() {
+
 		try {
 			uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -249,10 +256,12 @@ public class Main extends Application {
 			width = Double.parseDouble(widthBox.getText());
 			depth = Double.parseDouble(depthBox.getText());
 			material = materialBox.getText();
+			saveImage();
+			Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
+					bidsAllowed, date, height, width, depth, material);
 
-			Sculpture sculpture = new Sculpture(uploader, title, image, creatorName, year, reservePrice, bidsAllowed,
-					date, height, width, depth, material);
-
+			testLabel.setText(sculpture.toString());
+			testLabel2.setText(photoLocation);
 			Artwork.artworkList.add(sculpture);
 		} catch (NumberFormatException e) {
 			errorLabel.setText("Error, Please do not leave a field empty");
@@ -282,11 +291,12 @@ public class Main extends Application {
 
 	}
 
-	
-	/*public void saveImage(){
-		String imagePath = System.getProperty("user.dir") + "/Artwork Photos/a image.jpg";
-		//directory checker
-		//System.out.println(System.getProperty("user.dir"));
+	public void saveImage() {
+		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+		System.out.println(imagePath);
+		photoLocation = imagePath;
+		// directory checker
+		// System.out.println(System.getProperty("user.dir"));
 		File file = new File(imagePath);
 		try {
 			ImageIO.write(bufferedImage, "jpg", file);
@@ -294,13 +304,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	};
-	
 
-	*/
-	
-	
-	
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
