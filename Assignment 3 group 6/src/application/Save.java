@@ -49,9 +49,6 @@ public class Save {
             print.write("painting,");
             print.write(painting.getPaintingInformation() + "\n");
             
-            // Saves the image.
-            saveImage(painting.getTitle(), painting.getPhoto());
-            
             print.close();
         } catch (Exception e) {
             System.out.println("File not found");
@@ -63,6 +60,7 @@ public class Save {
 	}
 	
 	// I DON'T KNOW IF IT WORKS.
+	@SuppressWarnings("unused")
 	private static void saveImage(String title, Image photo) {
 		File file = new File(title + ".jpg");
 		
