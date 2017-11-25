@@ -89,22 +89,17 @@ public class Save {
 	}
 	
 	
-// I DON'T KNOW IF IT WORKS.
-	public static void saveImage(String title, BufferedImage photo) {
-		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
-		Main.photoLocation = imagePath;
-		File file = new File(imagePath);
-		// Creates file if it doesn't exist.
-		if (!file.exists()) {
-			try {
-				//file.createNewFile();
-				ImageIO.write(photo, "jpg", file);
-			} catch (IOException e) {
-				e.printStackTrace();
+		public static void saveImage(File file, BufferedImage photo) {
+
+				try {
+				
+					ImageIO.write(photo, "jpg", file);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			
 			}
-		} else {
-			System.out.println("Image already exists");
-			return;
+			
+		
+			
 		}
-	}
-}
