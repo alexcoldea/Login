@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -86,13 +87,15 @@ public class Save {
 	
 	// I DON'T KNOW IF IT WORKS.
 	@SuppressWarnings("unused")
-	private static void saveImage(String title, Image photo) {
-		File file = new File(title + ".jpg");
-		
+	public static void saveImage(String title, BufferedImage photo) {
+		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+		Main.photoLocation = imagePath;
+		File file = new File(imagePath);
 		// Creates file if it doesn't exist.
 		if (!file.exists()) {
 			try {
-				file.createNewFile();
+				//file.createNewFile();
+				ImageIO.write(photo, "jpg", file);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -101,11 +104,13 @@ public class Save {
 			return;
 		}
 		
-		// Saves image onto a file.
+		/*// Saves image onto a file.
 		try {
 			ImageIO.write((RenderedImage) photo, "jpg", file);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
+		
 	}
 }

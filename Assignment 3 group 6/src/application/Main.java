@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import com.sun.prism.paint.Color;
+
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Insets;
@@ -63,7 +65,7 @@ public class Main extends Application {
 	private Label materialLabel = new Label("Material:");
 	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
-	private String photoLocation;
+	public static String photoLocation;
 	private String uploader;
 	private String title;
 	private String creatorName;
@@ -265,7 +267,7 @@ public class Main extends Application {
 			Date date = new Date();
 			height = Double.parseDouble(heightBox.getText());
 			width = Double.parseDouble(widthBox.getText());
-			saveImage();
+			Save.saveImage(title,bufferedImage);
 			Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 					bidsAllowed, date, height, width);
 
@@ -292,7 +294,7 @@ public class Main extends Application {
 			width = Double.parseDouble(widthBox.getText());
 			depth = Double.parseDouble(depthBox.getText());
 			material = materialBox.getText();
-			saveImage();
+			Save.saveImage(title,bufferedImage);
 			Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 					bidsAllowed, date, height, width, depth, material);
 
@@ -331,19 +333,6 @@ public class Main extends Application {
 		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 	}
 
-	public void saveImage() {
-		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
-		System.out.println(imagePath);
-		photoLocation = imagePath;
-		// directory checker
-		// System.out.println(System.getProperty("user.dir"));
-		File file = new File(imagePath);
-		try {
-			ImageIO.write(bufferedImage, "jpg", file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	};
 
 	
 	//resets all variables and labels that have changed 
