@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 public class Painting extends Artwork {
 
 	// Painting without description
-	public Painting(String uploader, String title, Image photo, String creatorName, String year, double reservePrice,
+	public Painting(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width) {
 		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
@@ -14,7 +14,7 @@ public class Painting extends Artwork {
 	}
 
 	// Painting with description
-	public Painting(String uploader, String title, Image photo, String creatorName, String year, double reservePrice,
+	public Painting(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width, String description) {
 		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date, description);
 		this.height = height;

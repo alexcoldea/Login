@@ -10,7 +10,7 @@ public class Sculpture extends Artwork {
 	public static ArrayList<Artwork> additionalPhotos = new ArrayList();
 
 	// Sculpture without description or additional photos
-	public Sculpture(String uploader, String title, Image photo, String creatorName, String year, double reservePrice,
+	public Sculpture(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width, double depth, String material) {
 		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
@@ -20,7 +20,7 @@ public class Sculpture extends Artwork {
 	}
 
 	// sculpture with description but no additional photos
-	public Sculpture(String uploader, String title, Image photo, String creatorName, String year, double reservePrice,
+	public Sculpture(String uploader, String title, String photo, String creatorName, String year, double reservePrice,
 			int bidsAllowed, Date date, double height, double width, double depth, String material,
 			String description) {
 		super(uploader, title, photo, creatorName, year, reservePrice, bidsAllowed, date, description);
