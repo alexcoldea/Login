@@ -56,7 +56,32 @@ public class Save {
 	}
 	
 	public static void saveSculpture(Sculpture sculpture) {
-		
+		File file = new File("artworks.txt");
+        FileWriter fw = null;
+        
+        // Method creates file if one doesn't exist.
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        try {
+        	// Allows the file to be appendable.
+            fw = new FileWriter(file, true);
+            
+            PrintWriter print = new PrintWriter(fw);
+            
+            // Adds painting in front of the line.
+            print.write("sculpture,");
+            print.write(sculpture.getSculptureInformation() + "\n");
+            
+            print.close();
+        } catch (Exception e) {
+            System.out.println("File not found");
+        }
 	}
 	
 	// I DON'T KNOW IF IT WORKS.
