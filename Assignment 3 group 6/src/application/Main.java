@@ -23,6 +23,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * This class initialises the Art-A-Tawe system.
+ * 
+ * @author 
+ * @version 1.0
+ */
 public class Main extends Application {
 
 	final int PANE_SIZE_WIDTH = 1000;

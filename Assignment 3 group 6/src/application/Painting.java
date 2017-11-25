@@ -1,39 +1,115 @@
 package application;
+
 import java.util.*;
 
-
+/**
+ * This class creates painting objects that can be used on the Art-A-Tawe
+ * system.
+ * 
+ * @author Matthew Denholm
+ * @version 1.0
+ */
 public class Painting extends Artwork {
 
-	// Painting without description
-	public Painting(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice,
-			int bidsAllowed, Date date, double height, double width) {
+	/**
+	 * Create a Painting object without a description.
+	 * 
+	 * @param uploader
+	 *            The user who uploads the Painting.
+	 * @param title
+	 *            The title of the Painting.
+	 * @param photoLocation
+	 *            The path of where the Painting is saved.
+	 * @param creatorName
+	 *            The name of the artist who created the Painting.
+	 * @param year
+	 *            The year the Painting was created.
+	 * @param reservePrice
+	 *            The reserve price the Painting is set at.
+	 * @param bidsAllowed
+	 *            The number of bids allowed on the Painting.
+	 * @param date
+	 *            The date the Painting was uploaded onto the Art-A-Tawe system.
+	 * @param height
+	 *            The height dimension of the Painting.
+	 * @param width
+	 *            The width dimension of the Painting.
+	 */
+	public Painting(String uploader, String title, String photoLocation, String creatorName, String year,
+			double reservePrice, int bidsAllowed, Date date, double height, double width) {
 		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
 		this.width = width;
 	}
 
-	// Painting with description
-	public Painting(String uploader, String title, String photoLocation, String creatorName, String year, double reservePrice,
-			int bidsAllowed, Date date, double height, double width, String description) {
+	/**
+	 * Create a Painting object with a description.
+	 * 
+	 * @param uploader
+	 *            The user who uploads the Painting.
+	 * @param title
+	 *            The title of the Painting.
+	 * @param photoLocation
+	 *            The path of where the Painting is saved.
+	 * @param creatorName
+	 *            The name of the artist who created the Painting.
+	 * @param year
+	 *            The year the Painting was created.
+	 * @param reservePrice
+	 *            The reserve price the Painting is set at.
+	 * @param bidsAllowed
+	 *            The number of bids allowed on the Painting.
+	 * @param date
+	 *            The date the Painting was uploaded onto the Art-A-Tawe system.
+	 * @param height
+	 *            The height dimension of the Painting.
+	 * @param width
+	 *            The width dimension of the Painting.
+	 * @param description
+	 *            The description of the Painting.
+	 */
+	public Painting(String uploader, String title, String photoLocation, String creatorName, String year,
+			double reservePrice, int bidsAllowed, Date date, double height, double width, String description) {
 		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date, description);
 		this.height = height;
 		this.width = width;
 	}
 
+	/**
+	 * Get the height of the Painting.
+	 * 
+	 * @return the height.
+	 */
 	private double getHeight() {
 		return height;
 	}
 
+	/**
+	 * Get the width of the Painting.
+	 * 
+	 * @return the width.
+	 */
 	private double getWidth() {
 		return width;
 	}
-	
+
+	/**
+	 * Get the information that will be saved to a file.
+	 * 
+	 * @return the result.
+	 */
 	public String getPaintingInformation() {
-		return (getUploader()+ "," + getBidsAllowed() + ","+ getPhotoLocation() + "," + getTitle() + "," 
-				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," 
-				+ getWidth() + "," + getDate() + "," + getDescription());
+		String result = (getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
+				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," + getWidth()
+				+ "," + getDate() + "," + getDescription());
+		return result;
 	}
 
+	/**
+	 * Get the Painting information displayed in a String.
+	 * 
+	 * @return the result.
+	 */
 	public String toString() {
 		String result = "";
 		if (getDescription() == null) {
