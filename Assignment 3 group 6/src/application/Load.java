@@ -88,6 +88,8 @@ public class Load {
 		Date date = new Date(in.next()); // Ask about this.
 		String desc = in.next();
 		
+		in.close();
+		
 		if (desc == null) {
 			return new Painting(uploader, title, photo, creator, year, price, bids, date, height, width);
 		} else {
