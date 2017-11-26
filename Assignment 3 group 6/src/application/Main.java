@@ -39,7 +39,7 @@ public class Main extends Application {
 	final int PADDING = 5;
 	final int DESCRIPTION_BOX_WIDTH = 300;
 	final int DESCRIPTION_BOX_HEIGHT = 300;
-	
+
 	private Scene scene;
 	private Stage stage;
 	private Scene homeScene;
@@ -76,7 +76,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		//creates the home page
+		// creates the home page
 		try {
 			this.stage = primaryStage;
 			BorderPane root = new BorderPane();
@@ -100,7 +100,7 @@ public class Main extends Application {
 			browseNavButton.setOnAction(event -> {
 				stage.setScene(navigateBrowse());
 			});
-			
+
 			browseNavButton.setMaxWidth(Double.MAX_VALUE);
 			sellNavButton.setMaxWidth(Double.MAX_VALUE);
 
@@ -120,7 +120,8 @@ public class Main extends Application {
 
 	public Scene navigateSell() {
 
-		//creates the sell page where you can choose to sell either painting or sculpture
+		// creates the sell page where you can choose to sell either painting or
+		// sculpture
 		BorderPane sellPage = new BorderPane();
 		Scene scene = new Scene(sellPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		Label sellPageLabel = new Label("Sell Page (Place Holder)");
@@ -165,8 +166,8 @@ public class Main extends Application {
 	}
 
 	public Scene navigatePainting() {
-		
-		//creates the painting page where you can sell paintings
+
+		// creates the painting page where you can sell paintings
 		BorderPane paintingPage = new BorderPane();
 		Scene scene = new Scene(paintingPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		paintingPage.setCenter(imageViewer);
@@ -192,10 +193,10 @@ public class Main extends Application {
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
-		
+
 		descriptionBox.setPrefHeight(DESCRIPTION_BOX_HEIGHT);
 		descriptionBox.setPrefWidth(DESCRIPTION_BOX_WIDTH);
-		
+
 		Label paintingLabel = new Label("Painting");
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderLabel, uploaderBox, titleLabel, titleBox,
 				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
@@ -228,7 +229,7 @@ public class Main extends Application {
 
 	public Scene navigateSculpture() {
 
-		//creates the sculpture page where you can sell sculptures
+		// creates the sculpture page where you can sell sculptures
 		BorderPane sculpturePage = new BorderPane();
 		Scene scene = new Scene(sculpturePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		sculpturePage.setCenter(imageViewer);
@@ -296,7 +297,7 @@ public class Main extends Application {
 
 	public Scene navigateAddtionalPhotos() {
 
-		//creates the page where you can add additional photos to sculptures
+		// creates the page where you can add additional photos to sculptures
 		BorderPane additionalPhotosPage = new BorderPane();
 		Scene scene = new Scene(additionalPhotosPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		additionalPhotosPage.setCenter(imageViewer);
@@ -333,12 +334,13 @@ public class Main extends Application {
 	}
 
 	public Scene navigateBrowse() {
-		
-		//creates the browse page (CURRENTLY A PAGE HOLDER, NOT MY CLASS TO WORK ON)
+
+		// creates the browse page (CURRENTLY A PAGE HOLDER, NOT MY CLASS TO
+		// WORK ON)
 		BorderPane browsePage = new BorderPane();
 		Scene scene = new Scene(browsePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		VBox bottom = new VBox();
-		
+
 		Label placeHolder = new Label("THIS WHOLE PAGE IS JUST A PLACE HOLDER");
 		browsePage.setCenter(placeHolder);
 		stage.setTitle("Browse");
@@ -348,16 +350,13 @@ public class Main extends Application {
 		homeNavButton.setOnAction(event -> {
 			goHome();
 		});
-		
-		
-		
+
 		return scene;
 	}
-	
-	
+
 	public void createPainting() {
 
-		//creates painting objects from the text fields and images loaded
+		// creates painting objects from the text fields and images loaded
 		try {
 			String uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -369,7 +368,7 @@ public class Main extends Application {
 			double height = Double.parseDouble(heightBox.getText());
 			double width = Double.parseDouble(widthBox.getText());
 
-			String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + title + ".jpg";
 			photoLocation = imagePath;
 			File file = new File(imagePath);
 			if (!file.exists()) {
@@ -402,7 +401,7 @@ public class Main extends Application {
 
 	public void createSculpture() {
 
-		//creates sculpture objects from the text fields and images loaded
+		// creates sculpture objects from the text fields and images loaded
 		try {
 			String uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -416,7 +415,7 @@ public class Main extends Application {
 			double depth = Double.parseDouble(depthBox.getText());
 			String material = materialBox.getText();
 
-			String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + title + ".jpg";
+			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + title + ".jpg";
 			photoLocation = imagePath;
 			File file = new File(imagePath);
 			if (!file.exists()) {
@@ -445,8 +444,8 @@ public class Main extends Application {
 	}
 
 	public void imageLoader() {
-		
-		//loads images from windows explorer for paintings or sculptures
+
+		// loads images from windows explorer for paintings or sculptures
 		// Window Opener
 		FileChooser imageFinder = new FileChooser();
 
@@ -473,8 +472,9 @@ public class Main extends Application {
 	}
 
 	public void additionalPhotoLoader() {
-		
-		//loads images from windows explorer so you can add additional photos for sculptures
+
+		// loads images from windows explorer so you can add additional photos
+		// for sculptures
 		// Window Opener
 		FileChooser additionalImageFinder = new FileChooser();
 
@@ -499,8 +499,8 @@ public class Main extends Application {
 			imageErrorLabel.setText("Error, No image selected");
 		}
 
-		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + "Additional Photos" + "/" + title
-				+ additionalPhotoCounter + ".jpg";
+		String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos" + "/"
+				+ title + additionalPhotoCounter + ".jpg";
 		additionalPhotosLocation = imagePath;
 		File photoFile = new File(imagePath);
 		if (!photoFile.exists()) {
@@ -513,10 +513,9 @@ public class Main extends Application {
 
 	}
 
-	
 	public void goHome() {
-		
-		//sends user back to the home page
+
+		// sends user back to the home page
 		// resets all variables and labels that have changed
 		stage.setScene(homeScene);
 		stage.setTitle("Home");
