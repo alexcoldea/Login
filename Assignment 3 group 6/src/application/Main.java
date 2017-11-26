@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,7 +57,7 @@ public class Main extends Application {
 	private TextField widthBox = new TextField();
 	private TextField depthBox = new TextField();
 	private TextField materialBox = new TextField();
-	private TextField descriptionBox = new TextField();
+	private TextArea descriptionBox = new TextArea();
 	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
 	private Label textFieldErrorLabel = new Label("");
