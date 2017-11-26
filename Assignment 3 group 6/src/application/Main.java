@@ -94,6 +94,10 @@ public class Main extends Application {
 				stage.setScene(navigateSell());
 			});
 
+			browseNavButton.setOnAction(event -> {
+				stage.setScene(navigateBrowse());
+			});
+			
 			browseNavButton.setMaxWidth(Double.MAX_VALUE);
 			sellNavButton.setMaxWidth(Double.MAX_VALUE);
 
@@ -264,7 +268,7 @@ public class Main extends Application {
 		});
 
 		addAdditionalPhotosButton.setOnAction(event -> {
-			stage.setScene(navitgateAddtionalPhotos());
+			stage.setScene(navigateAddtionalPhotos());
 
 		});
 		homeNavButton.setOnAction(event -> {
@@ -278,7 +282,7 @@ public class Main extends Application {
 		return scene;
 	}
 
-	public Scene navitgateAddtionalPhotos() {
+	public Scene navigateAddtionalPhotos() {
 
 		BorderPane additionalPhotosPage = new BorderPane();
 		Scene scene = new Scene(additionalPhotosPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
@@ -315,6 +319,27 @@ public class Main extends Application {
 		return scene;
 	}
 
+	public Scene navigateBrowse() {
+		BorderPane browsePage = new BorderPane();
+		Scene scene = new Scene(browsePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		VBox bottom = new VBox();
+		
+		Label placeHolder = new Label("THIS WHOLE PAGE IS JUST A PLACE HOLDER");
+		browsePage.setCenter(placeHolder);
+		stage.setTitle("Browse");
+		bottom.getChildren().addAll(homeNavButton);
+		bottom.setPadding(paddingInset);
+		browsePage.setBottom(bottom);
+		homeNavButton.setOnAction(event -> {
+			goHome();
+		});
+		
+		
+		
+		return scene;
+	}
+	
+	
 	public void createPainting() {
 
 		try {
