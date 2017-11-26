@@ -74,6 +74,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		//creates the home page
 		try {
 			this.stage = primaryStage;
 			BorderPane root = new BorderPane();
@@ -117,6 +118,7 @@ public class Main extends Application {
 
 	public Scene navigateSell() {
 
+		//creates the sell page where you can choose to sell either painting or sculpture
 		BorderPane sellPage = new BorderPane();
 		Scene scene = new Scene(sellPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		Label sellPageLabel = new Label("Sell Page (Place Holder)");
@@ -161,6 +163,8 @@ public class Main extends Application {
 	}
 
 	public Scene navigatePainting() {
+		
+		//creates the painting page where you can sell paintings
 		BorderPane paintingPage = new BorderPane();
 		Scene scene = new Scene(paintingPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		paintingPage.setCenter(imageViewer);
@@ -219,6 +223,7 @@ public class Main extends Application {
 
 	public Scene navigateSculpture() {
 
+		//creates the sculpture page where you can sell sculptures
 		BorderPane sculpturePage = new BorderPane();
 		Scene scene = new Scene(sculpturePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		sculpturePage.setCenter(imageViewer);
@@ -284,6 +289,7 @@ public class Main extends Application {
 
 	public Scene navigateAddtionalPhotos() {
 
+		//creates the page where you can add additional photos to sculptures
 		BorderPane additionalPhotosPage = new BorderPane();
 		Scene scene = new Scene(additionalPhotosPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		additionalPhotosPage.setCenter(imageViewer);
@@ -320,6 +326,8 @@ public class Main extends Application {
 	}
 
 	public Scene navigateBrowse() {
+		
+		//creates the browse page (CURRENTLY A PAGE HOLDER, NOT MY CLASS TO WORK ON)
 		BorderPane browsePage = new BorderPane();
 		Scene scene = new Scene(browsePage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
 		VBox bottom = new VBox();
@@ -342,6 +350,7 @@ public class Main extends Application {
 	
 	public void createPainting() {
 
+		//creates painting objects from the text fields and images loaded
 		try {
 			String uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -386,6 +395,7 @@ public class Main extends Application {
 
 	public void createSculpture() {
 
+		//creates sculpture objects from the text fields and images loaded
 		try {
 			String uploader = uploaderBox.getText();
 			title = titleBox.getText();
@@ -428,6 +438,8 @@ public class Main extends Application {
 	}
 
 	public void imageLoader() {
+		
+		//loads images from windows explorer for paintings or sculptures
 		// Window Opener
 		FileChooser imageFinder = new FileChooser();
 
@@ -454,6 +466,8 @@ public class Main extends Application {
 	}
 
 	public void additionalPhotoLoader() {
+		
+		//loads images from windows explorer so you can add additional photos for sculptures
 		// Window Opener
 		FileChooser additionalImageFinder = new FileChooser();
 
@@ -492,8 +506,11 @@ public class Main extends Application {
 
 	}
 
-	// resets all variables and labels that have changed
+	
 	public void goHome() {
+		
+		//sends user back to the home page
+		// resets all variables and labels that have changed
 		stage.setScene(homeScene);
 		stage.setTitle("Home");
 		textFieldErrorLabel.setText("");
