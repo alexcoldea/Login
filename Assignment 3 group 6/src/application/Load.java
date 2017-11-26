@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -41,6 +42,7 @@ public class Load {
 		ArrayList<Artwork> artworks = new ArrayList<>();
 		String artworkType = "";
 		String line = "";
+		in.useDelimiter(",");
 		
 		while (in.hasNextLine()) {
 			try {
@@ -65,8 +67,32 @@ public class Load {
 		return artworks;
 	}
 	
+	/**
+	 * Method interprets a line of data and creates a painting from that data.
+	 * @param line A string of data relating to a painting.
+	 * @return A painting specified in the line.
+	 */
 	private static Painting createPainting(String line) {
-		return null;
+		Scanner in = new Scanner(line);
+		in.useDelimiter(",");
+		
+		String uploader = in.next();
+		int bids = in.nextInt();
+		String photo = in.next();
+		String title = in.next();
+		String creator = in.next();
+		String year = in.next();
+		double price = in.nextDouble();
+		double height = in.nextDouble();
+		double width = in.nextDouble();
+		Date date = new Date(in.next()); // Ask about this.
+		String desc = in.next();
+		
+		if (desc == null) {
+			return new Painting(uploader, title, photo, creator, year, price, bids, date, height, width);
+		} else {
+			return new Painting(uploader, title, photo, creator, year, price, bids, date, height, width, desc);
+		}
 	}
 	
 	private static Sculpture createSculpture(String line) {
