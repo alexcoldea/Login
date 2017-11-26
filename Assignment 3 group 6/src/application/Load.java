@@ -2,7 +2,6 @@ package application;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Scanner;
 
 /**
@@ -33,6 +32,11 @@ public class Load {
 		return readArtworks(in);
 	}
 	
+	/**
+	 * Method to interpret information text file create a list of artworks.
+	 * @param in The scanner to read the lines of text.
+	 * @return A list of artworks on text file.
+	 */
 	private static ArrayList<Artwork> readArtworks(Scanner in) {
 		ArrayList<Artwork> artworks = new ArrayList<>();
 		String artworkType = "";
@@ -58,7 +62,7 @@ public class Load {
 					break;
 			}
 		}
-		return null;
+		return artworks;
 	}
 	
 	private static Painting createPainting(String line) {
