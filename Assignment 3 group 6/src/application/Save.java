@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import javax.imageio.ImageIO;
 
 /**
- * This class in responsible for saving entities such as artworks and profiles.
+ * This class is responsible for saving entities such as artworks and profiles.
  * 
  * @author Christopher Lee
  * @version 1.0
