@@ -54,6 +54,7 @@ public class Main extends Application {
 	private TextField widthBox = new TextField();
 	private TextField depthBox = new TextField();
 	private TextField materialBox = new TextField();
+	private TextField descriptionBox = new TextField();
 	private ImageView imageViewer = new ImageView();
 	private Button homeNavButton = new Button("Home");
 	private Label textFieldErrorLabel = new Label("");
@@ -176,6 +177,7 @@ public class Main extends Application {
 		Label bidsAllowedLabel = new Label("Number of Bids Allowed:");
 		Label heightLabel = new Label("Height:");
 		Label widthLabel = new Label("Width:");
+		Label descriptionLabel = new Label("Description (Optional):");
 
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
@@ -184,7 +186,8 @@ public class Main extends Application {
 		Label paintingLabel = new Label("Painting");
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderLabel, uploaderBox, titleLabel, titleBox,
 				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
-				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, textFieldErrorLabel);
+				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, descriptionLabel,
+				descriptionBox, textFieldErrorLabel);
 		right.getChildren().addAll(loadPaintingButton, imageErrorLabel, testLabel, testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
 
@@ -229,6 +232,7 @@ public class Main extends Application {
 		Label widthLabel = new Label("Width:");
 		Label depthLabel = new Label("Depth:");
 		Label materialLabel = new Label("Material:");
+		Label descriptionLabel = new Label("Description (Optional):");
 
 		left.setSpacing(VBOX_SPACING);
 		right.setSpacing(VBOX_SPACING);
@@ -244,7 +248,7 @@ public class Main extends Application {
 		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderLabel, uploaderBox, titleLabel,
 				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox,
-				materialLabel, materialBox, textFieldErrorLabel);
+				materialLabel, materialBox, descriptionLabel, descriptionBox, textFieldErrorLabel);
 		right.getChildren().addAll(loadSculptureButton, addAdditionalPhotosButton, imageErrorLabel, testLabel,
 				testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
@@ -329,12 +333,22 @@ public class Main extends Application {
 			File file = new File(imagePath);
 			if (!file.exists()) {
 				Save.saveImage(file, bufferedImage);
-				Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
-						bidsAllowed, date, height, width);
+				if (descriptionBox.getText().equals(null)) {
+					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
+							bidsAllowed, date, height, width);
 
-				testLabel.setText(painting.toString());
-				testLabel2.setText(photoLocation);
-				Artwork.artworkList.add(painting);
+					testLabel.setText(painting.toString());
+					testLabel2.setText(photoLocation);
+					Artwork.artworkList.add(painting);
+				} else {
+					String description = descriptionBox.getText();
+					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
+							bidsAllowed, date, height, width, description);
+					testLabel.setText(painting.toString());
+					testLabel2.setText(photoLocation);
+					Artwork.artworkList.add(painting);
+				}
+
 			} else {
 				imageErrorLabel.setText("Artwork already exists");
 			}
@@ -365,12 +379,20 @@ public class Main extends Application {
 			File file = new File(imagePath);
 			if (!file.exists()) {
 				Save.saveImage(file, bufferedImage);
-				Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
-						bidsAllowed, date, height, width, depth, material);
-
-				testLabel.setText(sculpture.toString());
-				testLabel2.setText(photoLocation);
-				Artwork.artworkList.add(sculpture);
+				if (descriptionBox.getText().equals(null)) {
+					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
+							bidsAllowed, date, height, width, depth, material);
+					testLabel.setText(sculpture.toString());
+					testLabel2.setText(photoLocation);
+					Artwork.artworkList.add(sculpture);
+				} else {
+					String description = descriptionBox.getText();
+					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
+							bidsAllowed, date, height, width, depth, material, description);
+					testLabel.setText(sculpture.toString());
+					testLabel2.setText(photoLocation);
+					Artwork.artworkList.add(sculpture);
+				}
 			} else {
 				imageErrorLabel.setText("Artwork already exists");
 			}
@@ -408,15 +430,15 @@ public class Main extends Application {
 
 	public void additionalPhotoLoader() {
 		// Window Opener
-		FileChooser imageFinder = new FileChooser();
+		FileChooser additionalImageFinder = new FileChooser();
 
 		// Filters for extensions (PNGs and JPGs)
 		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
 		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-		imageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+		additionalImageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
 
 		// reads selected files
-		File file = imageFinder.showOpenDialog(null);
+		File file = additionalImageFinder.showOpenDialog(null);
 
 		try {
 			bufferedAdditionalImage = ImageIO.read(file);
@@ -424,13 +446,13 @@ public class Main extends Application {
 			imageViewer.setImage(additionalImage);
 			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
 			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+			additionalPhotoCounter++;
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
 			imageErrorLabel.setText("Error, No image selected");
 		}
 
-		additionalPhotoCounter++;
 		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + "Additional Photos" + "/" + title
 				+ additionalPhotoCounter + ".jpg";
 		additionalPhotosLocation = imagePath;
@@ -440,6 +462,7 @@ public class Main extends Application {
 
 		} else {
 			imageErrorLabel.setText("Additional Image already exists");
+			additionalPhotoCounter--;
 		}
 
 	}
@@ -450,7 +473,7 @@ public class Main extends Application {
 		stage.setTitle("Home");
 		textFieldErrorLabel.setText("");
 		imageErrorLabel.setText("");
-		imageViewer = null;
+		imageViewer.setImage(null);
 		additionalPhotoCounter = 0;
 	}
 
