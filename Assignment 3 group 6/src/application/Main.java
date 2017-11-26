@@ -42,6 +42,7 @@ public class Main extends Application {
 	private Stage stage;
 	private Scene homeScene;
 	private Image image;
+	private Image additionalImage;
 
 	private TextField uploaderBox = new TextField();
 	private TextField titleBox = new TextField();
@@ -63,8 +64,12 @@ public class Main extends Application {
 	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
 	public static String photoLocation;
+	public static String additionalPhotosLocation;
+	private String title;
+	private int additionalPhotoCounter;
 
 	private BufferedImage bufferedImage;
+	private BufferedImage bufferedAdditionalImage;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -277,10 +282,23 @@ public class Main extends Application {
 		VBox left = new VBox();
 		VBox right = new VBox();
 		VBox bottom = new VBox();
+		Button addPhotosButton = new Button("Add Photos");
+
+		left.setSpacing(VBOX_SPACING);
+		right.setSpacing(VBOX_SPACING);
+		left.setPadding(paddingInset);
+		right.setPadding(paddingInset);
+		bottom.setPadding(paddingInset);
+
+		additionalPhotosPage.setCenter(imageViewer);
 
 		bottom.setPadding(paddingInset);
-		
+		right.getChildren().addAll(addPhotosButton, imageErrorLabel);
 		bottom.getChildren().addAll(homeNavButton);
+
+		addPhotosButton.setOnAction(event -> {
+			additionalPhotoLoader();
+		});
 
 		homeNavButton.setOnAction(event -> {
 			goHome();
@@ -297,7 +315,7 @@ public class Main extends Application {
 
 		try {
 			String uploader = uploaderBox.getText();
-			String title = titleBox.getText();
+			title = titleBox.getText();
 			String creatorName = creatorNameBox.getText();
 			String year = yearBox.getText();
 			double reservePrice = Double.parseDouble(reservePriceBox.getText());
@@ -331,7 +349,7 @@ public class Main extends Application {
 
 		try {
 			String uploader = uploaderBox.getText();
-			String title = titleBox.getText();
+			title = titleBox.getText();
 			String creatorName = creatorNameBox.getText();
 			String year = yearBox.getText();
 			double reservePrice = Double.parseDouble(reservePriceBox.getText());
@@ -388,6 +406,44 @@ public class Main extends Application {
 
 	}
 
+	public void additionalPhotoLoader() {
+		// Window Opener
+		FileChooser imageFinder = new FileChooser();
+
+		// Filters for extensions (PNGs and JPGs)
+		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+		imageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+
+		// reads selected files
+		File file = imageFinder.showOpenDialog(null);
+
+		try {
+			bufferedAdditionalImage = ImageIO.read(file);
+			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
+			imageViewer.setImage(additionalImage);
+			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Unable to load " + file, e);
+		} catch (IllegalArgumentException e) {
+			imageErrorLabel.setText("Error, No image selected");
+		}
+
+		additionalPhotoCounter++;
+		String imagePath = System.getProperty("user.dir") + "/Artwork Photos" + "/" + "Additional Photos" + "/" + title
+				+ additionalPhotoCounter + ".jpg";
+		additionalPhotosLocation = imagePath;
+		File photoFile = new File(imagePath);
+		if (!photoFile.exists()) {
+			Save.saveAdditionalImage(photoFile, bufferedAdditionalImage);
+
+		} else {
+			imageErrorLabel.setText("Additional Image already exists");
+		}
+
+	}
+
 	// resets all variables and labels that have changed
 	public void goHome() {
 		stage.setScene(homeScene);
@@ -395,7 +451,7 @@ public class Main extends Application {
 		textFieldErrorLabel.setText("");
 		imageErrorLabel.setText("");
 		imageViewer = null;
-
+		additionalPhotoCounter = 0;
 	}
 
 	public static void main(String[] args) {
