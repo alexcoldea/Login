@@ -232,6 +232,7 @@ public class Main extends Application {
 		bottom.setPadding(paddingInset);
 		Button createSculptureButton = new Button("Create Sculpture");
 		Button loadSculptureButton = new Button("Load Sculpture Image");
+		Button addAdditionalPhotosButton = new Button("Add Additional Photos");
 		Label sculptureLabel = new Label("Sculpture");
 		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
 
@@ -239,7 +240,8 @@ public class Main extends Application {
 				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox,
 				materialLabel, materialBox, textFieldErrorLabel);
-		right.getChildren().addAll(loadSculptureButton, imageErrorLabel, testLabel, testLabel2);
+		right.getChildren().addAll(loadSculptureButton, addAdditionalPhotosButton, imageErrorLabel, testLabel,
+				testLabel2);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createSculptureButton.setOnAction(event -> {
@@ -252,6 +254,10 @@ public class Main extends Application {
 
 		});
 
+		addAdditionalPhotosButton.setOnAction(event -> {
+			stage.setScene(navitgateAddtionalPhotos());
+
+		});
 		homeNavButton.setOnAction(event -> {
 			goHome();
 		});
@@ -260,6 +266,30 @@ public class Main extends Application {
 		sculpturePage.setRight(right);
 		sculpturePage.setBottom(bottom);
 		stage.setTitle("Sculpture");
+		return scene;
+	}
+
+	public Scene navitgateAddtionalPhotos() {
+
+		BorderPane additionalPhotosPage = new BorderPane();
+		Scene scene = new Scene(additionalPhotosPage, PANE_SIZE_WIDTH, PANE_SIZE_HEIGHT);
+		additionalPhotosPage.setCenter(imageViewer);
+		VBox left = new VBox();
+		VBox right = new VBox();
+		VBox bottom = new VBox();
+
+		bottom.setPadding(paddingInset);
+		
+		bottom.getChildren().addAll(homeNavButton);
+
+		homeNavButton.setOnAction(event -> {
+			goHome();
+		});
+
+		additionalPhotosPage.setLeft(left);
+		additionalPhotosPage.setRight(right);
+		additionalPhotosPage.setBottom(bottom);
+		stage.setTitle("Addtional Photos");
 		return scene;
 	}
 
