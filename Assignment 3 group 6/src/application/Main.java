@@ -37,7 +37,9 @@ public class Main extends Application {
 	final int DISPLAY_IMAGE_HEIGHT = 250;
 	final int VBOX_SPACING = 5;
 	final int PADDING = 5;
-
+	final int DESCRIPTION_BOX_WIDTH = 300;
+	final int DESCRIPTION_BOX_HEIGHT = 300;
+	
 	private Scene scene;
 	private Stage stage;
 	private Scene homeScene;
@@ -190,7 +192,10 @@ public class Main extends Application {
 		Button createPaintingButton = new Button("Create Painting");
 		Button loadPaintingButton = new Button("Load Painting Image");
 		createPaintingButton.setMaxWidth(Double.MAX_VALUE);
-
+		
+		descriptionBox.setPrefHeight(DESCRIPTION_BOX_HEIGHT);
+		descriptionBox.setPrefWidth(DESCRIPTION_BOX_WIDTH);
+		
 		Label paintingLabel = new Label("Painting");
 		left.getChildren().addAll(createPaintingButton, paintingLabel, uploaderLabel, uploaderBox, titleLabel, titleBox,
 				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
@@ -253,6 +258,8 @@ public class Main extends Application {
 		Button addAdditionalPhotosButton = new Button("Add Additional Photos");
 		Label sculptureLabel = new Label("Sculpture");
 		createSculptureButton.setMaxWidth(Double.MAX_VALUE);
+		descriptionBox.setPrefHeight(DESCRIPTION_BOX_HEIGHT);
+		descriptionBox.setPrefWidth(DESCRIPTION_BOX_WIDTH);
 
 		left.getChildren().addAll(createSculptureButton, sculptureLabel, uploaderLabel, uploaderBox, titleLabel,
 				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
