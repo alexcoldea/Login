@@ -59,6 +59,10 @@ public class Save {
 		}
 	}
 
+	/**
+	 * Saves a specified sculpture onto a text file.
+	 * @param sculpture The specified sculpture.
+	 */
 	public static void saveSculpture(Sculpture sculpture) {
 		File file = new File("artworks.txt");
 		FileWriter fw = null;
