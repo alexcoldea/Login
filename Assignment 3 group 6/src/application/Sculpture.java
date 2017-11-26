@@ -150,7 +150,7 @@ public class Sculpture extends Artwork {
 	 */
 	public String toString() {
 		String result = "";
-		if (getDescription() == null) {
+		if (getDescription().equals("")) {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
 					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m," + " Depth: " + getDepth() + "m,"
