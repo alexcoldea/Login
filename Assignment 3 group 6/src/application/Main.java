@@ -69,7 +69,7 @@ public class Main extends Application {
 
 	public static String photoLocation;
 	public static String additionalPhotosLocation;
-	private String title;
+	private String title = "";
 	private int additionalPhotoCounter;
 
 	private BufferedImage bufferedImage;
@@ -282,7 +282,11 @@ public class Main extends Application {
 		});
 
 		addAdditionalPhotosButton.setOnAction(event -> {
-			stage.setScene(navigateAddtionalPhotos());
+			if(title.equals("")){
+				imageErrorLabel.setText("Please create a sculpture first");
+			}else{
+			stage.setScene(navigateAddtionalPhotos());	
+			}
 
 		});
 		homeNavButton.setOnAction(event -> {
@@ -378,7 +382,7 @@ public class Main extends Application {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width);
 
-					//	Save.savePainting(painting);
+					// Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
@@ -386,7 +390,7 @@ public class Main extends Application {
 					String description = descriptionBox.getText();
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, description);
-					
+
 					// Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
@@ -427,7 +431,7 @@ public class Main extends Application {
 				if (descriptionBox.getText().equals(null)) {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, depth, material);
-					
+
 					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
@@ -436,8 +440,8 @@ public class Main extends Application {
 					String description = descriptionBox.getText();
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, depth, material, description);
-					
-					//Save.saveSculpture(sculpture);
+
+					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
@@ -501,22 +505,21 @@ public class Main extends Application {
 			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
 			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 			additionalPhotoCounter++;
+			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos"
+					+ "/" + title + additionalPhotoCounter + ".jpg";
+			additionalPhotosLocation = imagePath;
+			File photoFile = new File(imagePath);
+			if (!photoFile.exists()) {
+				Save.saveAdditionalImage(photoFile, bufferedAdditionalImage);
+
+			} else {
+				imageErrorLabel.setText("Additional Image already exists");
+				additionalPhotoCounter--;
+			}
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
 			imageErrorLabel.setText("Error, No image selected");
-		}
-
-		String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos" + "/"
-				+ title + additionalPhotoCounter + ".jpg";
-		additionalPhotosLocation = imagePath;
-		File photoFile = new File(imagePath);
-		if (!photoFile.exists()) {
-			Save.saveAdditionalImage(photoFile, bufferedAdditionalImage);
-
-		} else {
-			imageErrorLabel.setText("Additional Image already exists");
-			additionalPhotoCounter--;
 		}
 
 	}
@@ -527,6 +530,7 @@ public class Main extends Application {
 		// resets all variables and labels that have changed
 		stage.setScene(homeScene);
 		stage.setTitle("Home");
+		title = "";
 		textFieldErrorLabel.setText("");
 		imageErrorLabel.setText("");
 		imageViewer.setImage(null);
