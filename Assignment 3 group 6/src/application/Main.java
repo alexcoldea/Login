@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 /**
  * This class initialises the Art-A-Tawe system.
  * 
- * @author
+ * @author Matthew Denholm
  * @version 1.0
  */
 public class Main extends Application {
@@ -69,12 +69,22 @@ public class Main extends Application {
 
 	public static String photoLocation;
 	public static String additionalPhotosLocation;
-	private String title;
+	private String title = "";
 	private int additionalPhotoCounter;
 
 	private BufferedImage bufferedImage;
 	private BufferedImage bufferedAdditionalImage;
 
+	/**
+	 * Starts the Art-A-Tawe system.
+	 * 
+	 * @param primaryStage
+	 *            The starting Stage of the system.
+	 * 
+	 * @exception Exception
+	 *                Any Exception.
+	 * @return No return value.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		// creates the home page
@@ -166,6 +176,11 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Changes the current Scene to the painting Scene.
+	 * 
+	 * @return the painting Scene.
+	 */
 	public Scene navigatePainting() {
 
 		// creates the painting page where you can sell paintings
@@ -228,6 +243,11 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Changes the current Scene to the sculpture Scene.
+	 * 
+	 * @return the sculpture Scene.
+	 */
 	public Scene navigateSculpture() {
 
 		// creates the sculpture page where you can sell sculptures
@@ -282,7 +302,11 @@ public class Main extends Application {
 		});
 
 		addAdditionalPhotosButton.setOnAction(event -> {
-			stage.setScene(navigateAddtionalPhotos());
+			if (title.equals("")) {
+				imageErrorLabel.setText("Please create a sculpture first");
+			} else {
+				stage.setScene(navigateAddtionalPhotos());
+			}
 
 		});
 		homeNavButton.setOnAction(event -> {
@@ -296,6 +320,11 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Changes the current Scene to the additional photos Scene.
+	 * 
+	 * @return the additional photos Scene.
+	 */
 	public Scene navigateAddtionalPhotos() {
 
 		// creates the page where you can add additional photos to sculptures
@@ -334,6 +363,11 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Changes the current Scene to the browse Scene.
+	 * 
+	 * @return the browse Scene.
+	 */
 	public Scene navigateBrowse() {
 
 		// creates the browse page (CURRENTLY A PAGE HOLDER, NOT MY CLASS TO
@@ -355,6 +389,14 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Creates paintings objects from information entered in text fields.
+	 * 
+	 * @exception NumberFormatException
+	 *                if a textField is empty when trying to retrieve
+	 *                information.
+	 * @return No return value.
+	 */
 	public void createPainting() {
 
 		// creates painting objects from the text fields and images loaded
@@ -378,6 +420,7 @@ public class Main extends Application {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width);
 
+					// Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
@@ -385,6 +428,8 @@ public class Main extends Application {
 					String description = descriptionBox.getText();
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, description);
+
+					// Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
@@ -400,6 +445,15 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Creates sculpture objects from information entered in text fields.
+	 * 
+	 * @exception NumberFormatException
+	 *                if a textField is empty when trying to retrieve
+	 *                information.
+	 * 
+	 * @return No return value.
+	 */
 	public void createSculpture() {
 
 		// creates sculpture objects from the text fields and images loaded
@@ -424,6 +478,8 @@ public class Main extends Application {
 				if (descriptionBox.getText().equals(null)) {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, depth, material);
+
+					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
@@ -431,6 +487,8 @@ public class Main extends Application {
 					String description = descriptionBox.getText();
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, depth, material, description);
+
+					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
@@ -444,6 +502,15 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Loads and saves images for paintings and sculptures to a folder.
+	 * 
+	 * @exception IOException
+	 *                if file cannot be loaded.
+	 * @exception IllegalArguementException
+	 *                if no file is selected.
+	 * @return No return value.
+	 */
 	public void imageLoader() {
 
 		// loads images from windows explorer for paintings or sculptures
@@ -461,9 +528,7 @@ public class Main extends Application {
 		try {
 			bufferedImage = ImageIO.read(file);
 			image = SwingFXUtils.toFXImage(bufferedImage, null);
-			imageViewer.setImage(image);
-			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+			displayImageSetter(image);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
@@ -472,6 +537,16 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Loads and saves additional photos for sculptures to a folder.
+	 * 
+	 * @exception IOException
+	 *                if file cannot be loaded.
+	 * @exception IllegalArguementException
+	 *                if no file is selected.
+	 * 
+	 * @return No return value.
+	 */
 	public void additionalPhotoLoader() {
 
 		// loads images from windows explorer so you can add additional photos
@@ -490,42 +565,67 @@ public class Main extends Application {
 		try {
 			bufferedAdditionalImage = ImageIO.read(file);
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
-			imageViewer.setImage(additionalImage);
-			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
+			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos"
+					+ "/" + title + additionalPhotoCounter + ".jpg";
+			additionalPhotosLocation = imagePath;
+			File photoFile = new File(imagePath);
+			if (!photoFile.exists()) {
+				Save.saveImage(photoFile, bufferedAdditionalImage);
+
+			} else {
+				imageErrorLabel.setText("Additional Image already exists");
+				additionalPhotoCounter--;
+			}
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
 			imageErrorLabel.setText("Error, No image selected");
 		}
 
-		String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos" + "/"
-				+ title + additionalPhotoCounter + ".jpg";
-		additionalPhotosLocation = imagePath;
-		File photoFile = new File(imagePath);
-		if (!photoFile.exists()) {
-			Save.saveAdditionalImage(photoFile, bufferedAdditionalImage);
-
-		} else {
-			imageErrorLabel.setText("Additional Image already exists");
-			additionalPhotoCounter--;
-		}
-
 	}
 
+	/**
+	 * Sets the current stage to the home stage.
+	 * 
+	 * @return No return value.
+	 */
 	public void goHome() {
 
 		// sends user back to the home page
 		// resets all variables and labels that have changed
 		stage.setScene(homeScene);
 		stage.setTitle("Home");
+		title = "";
 		textFieldErrorLabel.setText("");
 		imageErrorLabel.setText("");
 		imageViewer.setImage(null);
 		additionalPhotoCounter = 0;
 	}
+	
+	
+	
+	/**
+	 * Sets the imageViewer to a selected image and resizes it.
+	 * 
+	 * @param image
+	 *            An image of a painting or sculpture.
+	 * @return No return value.
+	 */
+	public void displayImageSetter(Image image){
+		imageViewer.setImage(image);
+		imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+	}
 
+	/**
+	 * Launches the system.
+	 * 
+	 * @param arg
+	 *            A string array containing the command line arguments.
+	 * @return No return value.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
