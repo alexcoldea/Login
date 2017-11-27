@@ -98,19 +98,10 @@ public class Save {
 
 			ImageIO.write(photo, "jpg", file);
 		} catch (IOException e) {
+			//diagnoses the exception and prints to console
 			e.printStackTrace();
 		}
 
 	}
 
-	public static void saveAdditionalImage(File file, BufferedImage photo) {
-
-		try {
-
-			ImageIO.write(photo, "jpg", file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
 }
