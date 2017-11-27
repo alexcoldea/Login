@@ -282,10 +282,10 @@ public class Main extends Application {
 		});
 
 		addAdditionalPhotosButton.setOnAction(event -> {
-			if(title.equals("")){
+			if (title.equals("")) {
 				imageErrorLabel.setText("Please create a sculpture first");
-			}else{
-			stage.setScene(navigateAddtionalPhotos());	
+			} else {
+				stage.setScene(navigateAddtionalPhotos());
 			}
 
 		});
@@ -510,7 +510,7 @@ public class Main extends Application {
 			additionalPhotosLocation = imagePath;
 			File photoFile = new File(imagePath);
 			if (!photoFile.exists()) {
-				Save.saveAdditionalImage(photoFile, bufferedAdditionalImage);
+				Save.saveImage(photoFile, bufferedAdditionalImage);
 
 			} else {
 				imageErrorLabel.setText("Additional Image already exists");
