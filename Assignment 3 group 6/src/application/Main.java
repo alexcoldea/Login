@@ -528,9 +528,7 @@ public class Main extends Application {
 		try {
 			bufferedImage = ImageIO.read(file);
 			image = SwingFXUtils.toFXImage(bufferedImage, null);
-			imageViewer.setImage(image);
-			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+			displayImageSetter(image);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to load " + file, e);
 		} catch (IllegalArgumentException e) {
@@ -567,9 +565,7 @@ public class Main extends Application {
 		try {
 			bufferedAdditionalImage = ImageIO.read(file);
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
-			imageViewer.setImage(additionalImage);
-			imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
-			imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
+			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
 			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos"
 					+ "/" + title + additionalPhotoCounter + ".jpg";
@@ -606,6 +602,21 @@ public class Main extends Application {
 		imageErrorLabel.setText("");
 		imageViewer.setImage(null);
 		additionalPhotoCounter = 0;
+	}
+	
+	
+	
+	/**
+	 * Sets the imageViewer to a selected image and resizes it.
+	 * 
+	 * @param image
+	 *            An image of a painting or sculpture.
+	 * @return No return value.
+	 */
+	public void displayImageSetter(Image image){
+		imageViewer.setImage(image);
+		imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
+		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
 	}
 
 	/**
