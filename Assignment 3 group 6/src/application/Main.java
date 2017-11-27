@@ -378,6 +378,7 @@ public class Main extends Application {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width);
 
+					//	Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
@@ -385,6 +386,8 @@ public class Main extends Application {
 					String description = descriptionBox.getText();
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, description);
+					
+					// Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
@@ -424,6 +427,8 @@ public class Main extends Application {
 				if (descriptionBox.getText().equals(null)) {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, depth, material);
+					
+					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
@@ -431,6 +436,8 @@ public class Main extends Application {
 					String description = descriptionBox.getText();
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, depth, material, description);
+					
+					//Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
