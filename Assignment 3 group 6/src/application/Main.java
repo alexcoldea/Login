@@ -27,7 +27,7 @@ import javafx.scene.layout.VBox;
 /**
  * This class initialises the Art-A-Tawe system.
  * 
- * @author
+ * @author Matthew Denholm
  * @version 1.0
  */
 public class Main extends Application {
@@ -75,6 +75,16 @@ public class Main extends Application {
 	private BufferedImage bufferedImage;
 	private BufferedImage bufferedAdditionalImage;
 
+	/**
+	 * Starts the Art-A-Tawe system.
+	 * 
+	 * @param primaryStage
+	 *            The starting Stage of the system.
+	 * 
+	 * @exception Exception
+	 *                Any Exception.
+	 * @return No return value.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		// creates the home page
@@ -166,6 +176,11 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Changes the current Scene to the painting Scene.
+	 * 
+	 * @return the painting Scene.
+	 */
 	public Scene navigatePainting() {
 
 		// creates the painting page where you can sell paintings
@@ -228,6 +243,11 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Changes the current Scene to the sculpture Scene.
+	 * 
+	 * @return the sculpture Scene.
+	 */
 	public Scene navigateSculpture() {
 
 		// creates the sculpture page where you can sell sculptures
@@ -300,6 +320,11 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Changes the current Scene to the additional photos Scene.
+	 * 
+	 * @return the additional photos Scene.
+	 */
 	public Scene navigateAddtionalPhotos() {
 
 		// creates the page where you can add additional photos to sculptures
@@ -338,6 +363,11 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Changes the current Scene to the browse Scene.
+	 * 
+	 * @return the browse Scene.
+	 */
 	public Scene navigateBrowse() {
 
 		// creates the browse page (CURRENTLY A PAGE HOLDER, NOT MY CLASS TO
@@ -359,6 +389,14 @@ public class Main extends Application {
 		return scene;
 	}
 
+	/**
+	 * Creates paintings objects from information entered in text fields.
+	 * 
+	 * @exception NumberFormatException
+	 *                if a textField is empty when trying to retrieve
+	 *                information.
+	 * @return No return value.
+	 */
 	public void createPainting() {
 
 		// creates painting objects from the text fields and images loaded
@@ -407,6 +445,15 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Creates sculpture objects from information entered in text fields.
+	 * 
+	 * @exception NumberFormatException
+	 *                if a textField is empty when trying to retrieve
+	 *                information.
+	 * 
+	 * @return No return value.
+	 */
 	public void createSculpture() {
 
 		// creates sculpture objects from the text fields and images loaded
@@ -455,6 +502,15 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Loads and saves images for paintings and sculptures to a folder.
+	 * 
+	 * @exception IOException
+	 *                if file cannot be loaded.
+	 * @exception IllegalArguementException
+	 *                if no file is selected.
+	 * @return No return value.
+	 */
 	public void imageLoader() {
 
 		// loads images from windows explorer for paintings or sculptures
@@ -483,6 +539,16 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Loads and saves additional photos for sculptures to a folder.
+	 * 
+	 * @exception IOException
+	 *                if file cannot be loaded.
+	 * @exception IllegalArguementException
+	 *                if no file is selected.
+	 * 
+	 * @return No return value.
+	 */
 	public void additionalPhotoLoader() {
 
 		// loads images from windows explorer so you can add additional photos
@@ -524,6 +590,11 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Sets the current stage to the home stage.
+	 * 
+	 * @return No return value.
+	 */
 	public void goHome() {
 
 		// sends user back to the home page
@@ -537,6 +608,13 @@ public class Main extends Application {
 		additionalPhotoCounter = 0;
 	}
 
+	/**
+	 * Launches the system.
+	 * 
+	 * @param arg
+	 *            A string array containing the command line arguments.
+	 * @return No return value.
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
