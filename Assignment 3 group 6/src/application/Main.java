@@ -67,6 +67,7 @@ public class Main extends Application {
 	private Label imageErrorLabel = new Label("");
 	private Label testLabel = new Label("test label");
 	private Label testLabel2 = new Label("test label2");
+	
 
 	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
@@ -74,7 +75,7 @@ public class Main extends Application {
 	public static String additionalPhotosLocation;
 	private String title = "";
 	private int additionalPhotoCounter;
-
+	private Label photoCounterLabel = new Label();
 	private BufferedImage bufferedImage;
 	private BufferedImage bufferedAdditionalImage;
 
@@ -338,6 +339,8 @@ public class Main extends Application {
 		VBox right = new VBox();
 		VBox bottom = new VBox();
 		Button addPhotosButton = new Button("Add Photos");
+		Button returnNavButton = new Button("Return");
+		
 
 		left.setSpacing(VBOX_SPACING);
 		right.setSpacing(VBOX_SPACING);
@@ -348,15 +351,16 @@ public class Main extends Application {
 		additionalPhotosPage.setCenter(imageViewer);
 
 		bottom.setPadding(paddingInset);
-		right.getChildren().addAll(addPhotosButton, imageErrorLabel);
-		bottom.getChildren().addAll(homeNavButton);
+		right.getChildren().addAll(addPhotosButton, photoCounterLabel, imageErrorLabel);
+		bottom.getChildren().addAll(returnNavButton);
 
 		addPhotosButton.setOnAction(event -> {
 			additionalPhotoLoader();
 		});
 
-		homeNavButton.setOnAction(event -> {
-			goHome();
+		returnNavButton.setOnAction(event -> {
+			Save.photoCounter(title, additionalPhotoCounter);
+			stage.setScene(navigateSculpture());
 		});
 
 		additionalPhotosPage.setLeft(left);
@@ -488,7 +492,7 @@ public class Main extends Application {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, uploadDate, height, width, depth, material);
 
-					// Save.saveSculpture(sculpture);
+					Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
@@ -497,7 +501,7 @@ public class Main extends Application {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, uploadDate, height, width, depth, material, description);
 
-					// Save.saveSculpture(sculpture);
+					Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(sculpture);
@@ -576,8 +580,9 @@ public class Main extends Application {
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
 			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
-			Save.photoCounter(title, additionalPhotoCounter);
-			String imagePath = "src/Artwork Photos/Additional Photos" + "/" + title + "-"+ additionalPhotoCounter + ".jpg";
+			photoCounterLabel.setText("Number of Photos Added: " + additionalPhotoCounter);
+			String imagePath = "src/Artwork Photos/Additional Photos" + "/" + title + "-" + additionalPhotoCounter
+					+ ".jpg";
 			additionalPhotosLocation = imagePath;
 			File photoFile = new File(imagePath);
 			if (!photoFile.exists()) {
