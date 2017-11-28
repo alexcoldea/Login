@@ -94,23 +94,8 @@ public class Sculpture extends Artwork {
 		this.depth = depth;
 		this.material = material;
 	}
-
-	/**
-	 * Get the height of the Sculpture.
-	 * 
-	 * @return the height.
-	 */
-	private double getHeight() {
-		return height;
-	}
-
-	/**
-	 * Get the width of the Sculpture.
-	 * 
-	 * @return the width.
-	 */
-	private double getWidth() {
-		return width;
+	public String getType(){
+		return "Sculpture";
 	}
 
 	/**
@@ -137,7 +122,7 @@ public class Sculpture extends Artwork {
 	 * @return the result.
 	 */
 	public String getSculptureInformation() {
-		String result = (getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
+		String result = (getType() + "," + getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," + getWidth()
 				+ "," + getDepth() + "," + getMaterial() + "," + getDate() + "," + getDescription());
 		return result;
