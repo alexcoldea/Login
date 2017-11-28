@@ -75,22 +75,8 @@ public class Painting extends Artwork {
 		this.width = width;
 	}
 
-	/**
-	 * Get the height of the Painting.
-	 * 
-	 * @return the height.
-	 */
-	private double getHeight() {
-		return height;
-	}
-
-	/**
-	 * Get the width of the Painting.
-	 * 
-	 * @return the width.
-	 */
-	private double getWidth() {
-		return width;
+	public String getType(){
+		return "Painting";
 	}
 
 	/**
@@ -99,7 +85,7 @@ public class Painting extends Artwork {
 	 * @return the result.
 	 */
 	public String getPaintingInformation() {
-		String result = (getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
+		String result = (getType() + "," + getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," + getWidth()
 				+ "," + getDate() + "," + getDescription());
 		return result;

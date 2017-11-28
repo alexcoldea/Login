@@ -175,4 +175,24 @@ public class Artwork {
 		return date;
 	}
 
+	/**
+	 * Get the height of the Artwork.
+	 * 
+	 * @return the height.
+	 */
+	public double getHeight() {
+		return height;
+	}
+
+	/**
+	 * Get the width of the Artwork.
+	 * 
+	 * @return the width.
+	 */
+	public double getWidth() {
+		return width;
+	}
+	
+	
+	
 }
