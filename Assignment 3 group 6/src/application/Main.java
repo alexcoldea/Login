@@ -67,7 +67,6 @@ public class Main extends Application {
 	private Label imageErrorLabel = new Label("");
 	private Label testLabel = new Label("test label");
 	private Label testLabel2 = new Label("test label2");
-	
 
 	private Insets paddingInset = new Insets(PADDING, PADDING, PADDING, PADDING);
 
@@ -340,7 +339,6 @@ public class Main extends Application {
 		VBox bottom = new VBox();
 		Button addPhotosButton = new Button("Add Photos");
 		Button returnNavButton = new Button("Return");
-		
 
 		left.setSpacing(VBOX_SPACING);
 		right.setSpacing(VBOX_SPACING);
@@ -359,8 +357,8 @@ public class Main extends Application {
 		});
 
 		returnNavButton.setOnAction(event -> {
-			Save.photoCounter(title, additionalPhotoCounter);
-			stage.setScene(navigateSculpture());
+			returnNav();
+
 		});
 
 		additionalPhotosPage.setLeft(left);
@@ -526,17 +524,7 @@ public class Main extends Application {
 	 */
 	public void imageLoader() {
 
-		// loads images from windows explorer for paintings or sculptures
-		// Window Opener
-		FileChooser imageFinder = new FileChooser();
-
-		// Filters for extensions (PNGs and JPGs)
-		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-		imageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-
-		// reads selected files
-		File file = imageFinder.showOpenDialog(null);
+		File file = Load.fileSelecter();
 
 		try {
 			bufferedImage = ImageIO.read(file);
@@ -562,21 +550,10 @@ public class Main extends Application {
 	 */
 	public void additionalPhotoLoader() {
 
-		// loads images from windows explorer so you can add additional photos
-		// for sculptures
-		// Window Opener
-		FileChooser additionalImageFinder = new FileChooser();
-
-		// Filters for extensions (PNGs and JPGs)
-		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-		additionalImageFinder.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-
-		// reads selected files
-		File file = additionalImageFinder.showOpenDialog(null);
+		File file = Load.fileSelecter();
 
 		try {
-			bufferedAdditionalImage = ImageIO.read(file);
+			bufferedAdditionalImage = ImageIO.read(file); 	
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
 			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
@@ -598,6 +575,18 @@ public class Main extends Application {
 			imageErrorLabel.setText("Error, No image selected");
 		}
 
+	}
+
+	/**
+	 * Sets the current stage to the Sculpture stage.
+	 * 
+	 * @return No return value.
+	 */
+	public void returnNav() {
+		Save.photoCounter(title, additionalPhotoCounter);
+		imageErrorLabel.setText("");
+		textFieldErrorLabel.setText("");
+		stage.setScene(navigateSculpture());
 	}
 
 	/**
@@ -640,11 +629,13 @@ public class Main extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
-		//tester for loading additional images
-		/*System.out.println(Load.loadArtworks());
-		Sculpture test = new Sculpture("matt", "Wolf", "String photoLocation", "String creatorName", "String year",
-			5, 6, "19/02/2017", 5, 4, 3, "marble");
-		Load.readAdditionalPhotos(test);
-		System.out.println(test.getAdditionalPhotos());*/
+		// tester for loading additional images
+		/*
+		 * System.out.println(Load.loadArtworks()); Sculpture test = new
+		 * Sculpture("matt", "Wolf", "String photoLocation",
+		 * "String creatorName", "String year", 5, 6, "19/02/2017", 5, 4, 3,
+		 * "marble"); Load.readAdditionalPhotos(test);
+		 * System.out.println(test.getAdditionalPhotos());
+		 */
 	}
 }

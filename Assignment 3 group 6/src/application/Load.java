@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 
 /**
  * This class is responsible for loading entities such as artworks and profiles.
@@ -173,4 +174,22 @@ public class Load {
 			return new Sculpture(uploader, title, photo, creator, year, price, bids, date, height, width, depth, desc);
 		}
 	}
+	
+	public static File fileSelecter(){
+
+		// loads images from windows explorer so you can add additional photos
+		// for sculptures
+		// Window Opener
+		FileChooser additionalImageFinder = new FileChooser();
+
+		// Filters for extensions (PNGs and JPGs)
+		FileChooser.ExtensionFilter filterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+		FileChooser.ExtensionFilter filterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+		additionalImageFinder.getExtensionFilters().addAll(filterJPG, filterPNG);
+
+		// reads selected files
+		File file = additionalImageFinder.showOpenDialog(null);
+		return file;
+	}
+	
 }
