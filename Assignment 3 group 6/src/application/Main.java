@@ -3,6 +3,9 @@ package application;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -408,6 +411,9 @@ public class Main extends Application {
 			double reservePrice = Double.parseDouble(reservePriceBox.getText());
 			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
 			Date date = new Date();
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+			String uploadDate = df.format(date);
+			
 			double height = Double.parseDouble(heightBox.getText());
 			double width = Double.parseDouble(widthBox.getText());
 
@@ -418,7 +424,7 @@ public class Main extends Application {
 				Save.saveImage(file, bufferedImage);
 				if (descriptionBox.getText().equals(null)) {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
-							bidsAllowed, date, height, width);
+							bidsAllowed, uploadDate, height, width);
 
 					Save.savePainting(painting);
 					testLabel.setText(painting.toString());
@@ -427,7 +433,7 @@ public class Main extends Application {
 				} else {
 					String description = descriptionBox.getText();
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
-							bidsAllowed, date, height, width, description);
+							bidsAllowed, uploadDate, height, width, description);
 
 					Save.savePainting(painting);
 					testLabel.setText(painting.toString());
@@ -465,6 +471,8 @@ public class Main extends Application {
 			double reservePrice = Double.parseDouble(reservePriceBox.getText());
 			int bidsAllowed = Integer.parseInt(bidsAllowedBox.getText());
 			Date date = new Date();
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+			String uploadDate = df.format(date);
 			double height = Double.parseDouble(heightBox.getText());
 			double width = Double.parseDouble(widthBox.getText());
 			double depth = Double.parseDouble(depthBox.getText());
@@ -477,7 +485,7 @@ public class Main extends Application {
 				Save.saveImage(file, bufferedImage);
 				if (descriptionBox.getText().equals(null)) {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
-							bidsAllowed, date, height, width, depth, material);
+							bidsAllowed, uploadDate, height, width, depth, material);
 
 					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
@@ -486,7 +494,7 @@ public class Main extends Application {
 				} else {
 					String description = descriptionBox.getText();
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
-							bidsAllowed, date, height, width, depth, material, description);
+							bidsAllowed, uploadDate, height, width, depth, material, description);
 
 					// Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());

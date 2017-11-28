@@ -19,7 +19,7 @@ public class Artwork {
 	protected double reservePrice;
 	protected int bidsAllowed;
 	protected String description;
-	protected Date date;
+	protected String date;
 	protected double height;
 	protected double width;
 	public static ArrayList<Artwork> artworkList = new ArrayList<Artwork>();
@@ -46,7 +46,7 @@ public class Artwork {
 	 *            The date the Artwork was uploaded onto the Art-A-Tawe system.
 	 */
 	public Artwork(String uploader, String title, String photoLocation, String creatorName, String year,
-			double reservePrice, int bidsAllowed, Date date) {
+			double reservePrice, int bidsAllowed, String date) {
 		this.date = date;
 		this.uploader = uploader;
 		this.title = title;
@@ -81,7 +81,7 @@ public class Artwork {
 	 *            The description of the Artwork
 	 */
 	public Artwork(String uploader, String title, String photoLocation, String creatorName, String year,
-			double reservePrice, int bidsAllowed, Date date, String description) {
+			double reservePrice, int bidsAllowed, String date, String description) {
 		this.date = date;
 		this.title = title;
 		this.uploader = uploader;
@@ -171,7 +171,7 @@ public class Artwork {
 	 * 
 	 * @return the date.
 	 */
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 

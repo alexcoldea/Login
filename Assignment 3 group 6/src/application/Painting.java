@@ -36,7 +36,7 @@ public class Painting extends Artwork {
 	 *            The width dimension of the Painting.
 	 */
 	public Painting(String uploader, String title, String photoLocation, String creatorName, String year,
-			double reservePrice, int bidsAllowed, Date date, double height, double width) {
+			double reservePrice, int bidsAllowed, String date, double height, double width) {
 		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
 		this.width = width;
@@ -69,7 +69,7 @@ public class Painting extends Artwork {
 	 *            The description of the Painting.
 	 */
 	public Painting(String uploader, String title, String photoLocation, String creatorName, String year,
-			double reservePrice, int bidsAllowed, Date date, double height, double width, String description) {
+			double reservePrice, int bidsAllowed, String date, double height, double width, String description) {
 		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date, description);
 		this.height = height;
 		this.width = width;

@@ -45,7 +45,7 @@ public class Sculpture extends Artwork {
 	 *            The material the Sculpture is made out of.
 	 */
 	public Sculpture(String uploader, String title, String photoLocation, String creatorName, String year,
-			double reservePrice, int bidsAllowed, Date date, double height, double width, double depth,
+			double reservePrice, int bidsAllowed, String date, double height, double width, double depth,
 			String material) {
 		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date);
 		this.height = height;
@@ -86,7 +86,7 @@ public class Sculpture extends Artwork {
 	 *            The description of the Sculpture.
 	 */
 	public Sculpture(String uploader, String title, String photoLocation, String creatorName, String year,
-			double reservePrice, int bidsAllowed, Date date, double height, double width, double depth, String material,
+			double reservePrice, int bidsAllowed, String date, double height, double width, double depth, String material,
 			String description) {
 		super(uploader, title, photoLocation, creatorName, year, reservePrice, bidsAllowed, date, description);
 		this.height = height;
