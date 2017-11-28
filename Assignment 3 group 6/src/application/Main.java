@@ -640,6 +640,11 @@ public class Main extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
-
+		//tester for loading additional images
+		/*System.out.println(Load.loadArtworks());
+		Sculpture test = new Sculpture("matt", "Wolf", "String photoLocation", "String creatorName", "String year",
+			5, 6, "19/02/2017", 5, 4, 3, "marble");
+		Load.readAdditionalPhotos(test);
+		System.out.println(test.getAdditionalPhotos());*/
 	}
 }

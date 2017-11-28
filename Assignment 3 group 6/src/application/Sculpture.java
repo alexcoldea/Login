@@ -2,6 +2,8 @@ package application;
 
 import java.util.*;
 
+import javafx.scene.image.Image;
+
 /**
  * This class creates sculpture objects that can be used on the Art-A-Tawe
  * system.
@@ -13,7 +15,7 @@ public class Sculpture extends Artwork {
 
 	private double depth;
 	private String material;
-	public static ArrayList<Artwork> additionalPhotos = new ArrayList();
+	public static ArrayList<Image> additionalPhotos = new ArrayList<Image>();
 
 	/**
 	 * Create a Sculpture object without a description.
@@ -93,6 +95,15 @@ public class Sculpture extends Artwork {
 		this.width = width;
 		this.depth = depth;
 		this.material = material;
+	}
+	
+	
+	public static ArrayList<Image> getAdditionalPhotos() {
+		return additionalPhotos;
+	}
+
+	public void addMorePhotos(Image morePhotos){
+		additionalPhotos.add(morePhotos);
 	}
 	
 	

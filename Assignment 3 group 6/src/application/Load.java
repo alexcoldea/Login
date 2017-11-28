@@ -1,9 +1,15 @@
 package application;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 /**
  * This class is responsible for loading entities such as artworks and profiles.
@@ -24,6 +30,7 @@ public class Load {
 		
 		File file = new File("artworks.txt");
 		try {
+			
 			in = new Scanner(file);
 		} catch (Exception e) {
 			System.out.println("Unable to open artwork.txt");
@@ -58,7 +65,9 @@ public class Load {
 					break;
 				case "Sculpture":
 					line = in.nextLine();
-					artworks.add(createSculpture(line));
+					Sculpture s = createSculpture(line);
+					artworks.add(s);
+					readAdditionalPhotos(s);
 					break;
 				default:
 					break;
@@ -98,6 +107,44 @@ public class Load {
 		}
 	}
 	
+	//loads additional images from Sculpture
+	public static void readAdditionalPhotos(Sculpture s){
+		String title = s.getTitle();
+		Image additionalImage = null;
+		Scanner in = null;
+		
+		File file = new File("src/Artwork Photos/Additional Photos/" + title+"Counter.txt");
+		try {
+			
+			in = new Scanner(file);
+		} catch (Exception e) {
+			System.out.println("Unable to open "+ title +"Counter.txt");
+			System.exit(1);
+		}
+		int photoCounter = in.nextInt();
+		System.out.println(photoCounter);
+		in.close();
+		int counter = 1;
+		while (counter <= photoCounter){
+			String path = "src/Artwork Photos/Additional Photos/" + title + "-" + counter
+					+ ".jpg";
+			File photoFile = new File(path);
+			try {
+				
+				in = new Scanner(photoFile);
+				BufferedImage bufferedAdditionalImage = ImageIO.read(photoFile);
+				additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
+			} catch (Exception e) {
+				System.out.println("Unable to open "+ s.getTitle() + "-" + counter
+						+".jpg");
+				System.exit(1);
+			}
+		counter++;
+		s.addMorePhotos(additionalImage);
+		}
+		in.close();
+		
+	}
 	
 	private static Sculpture createSculpture(String line) {
 		Scanner in = new Scanner(line);
