@@ -1,3 +1,2 @@
 Painting,Matthew Denholm,10,C:\Users\Matthew\git\Assignment-3\Assignment 3 group 6/src/Artwork Photos/Test Painting.jpg,Test Painting,Da vinci,1500,1000.0,5.5,3.3,Tue Nov 28 16:57:05 GMT 2017,Testing if save works
-Painting,Matthew Denholm,6,C:\Users\Matthew\git\Assignment-3\Assignment 3 group 6/src/Artwork Photos/Test 2.jpg,Test 2,me,19998,555555.0,2.2,1.1,11/28/2017 17:09:01,another test
-Painting,matt,2,C:\Users\Matthew\git\Assignment-3\Assignment 3 group 6/src/Artwork Photos/test3.jpg,test3,lkjsdvi,1998,33.0,8.0,1.1,11/28/2017 17:18:15,antoher thest
+

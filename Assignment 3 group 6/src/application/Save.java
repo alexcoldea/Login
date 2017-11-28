@@ -105,4 +105,25 @@ public class Save {
 
 	}
 
+	//not working fully yet
+	public static void photoCounter(String title, int i){
+		File file = new File("src/Artwork Photos/Additional Photos" + "/" + title+"Counter.txt");
+		FileWriter fw = null;
+		try {
+			// Allows the file to be appendable.
+			fw = new FileWriter(file, true);
+
+			PrintWriter print = new PrintWriter(fw);
+
+			print.write(i);
+
+			print.close();
+		} catch (Exception e) {
+			System.out.println("File not found");
+			System.exit(1);
+		}
+		
+	}
+	
+	
 }

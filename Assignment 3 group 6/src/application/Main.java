@@ -576,7 +576,8 @@ public class Main extends Application {
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
 			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
-			String imagePath = "src/Artwork Photos/Additional Photos" + "/" + title + additionalPhotoCounter + ".jpg";
+			Save.photoCounter(title, additionalPhotoCounter);
+			String imagePath = "src/Artwork Photos/Additional Photos" + "/" + title + "-"+ additionalPhotoCounter + ".jpg";
 			additionalPhotosLocation = imagePath;
 			File photoFile = new File(imagePath);
 			if (!photoFile.exists()) {
