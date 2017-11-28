@@ -75,6 +75,11 @@ public class Painting extends Artwork {
 		this.width = width;
 	}
 
+	/**
+	 * Gets the type of the Artwork.
+	 * 
+	 * @return Painting.
+	 */
 	public String getType(){
 		return "Painting";
 	}

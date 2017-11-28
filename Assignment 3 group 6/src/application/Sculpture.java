@@ -94,6 +94,13 @@ public class Sculpture extends Artwork {
 		this.depth = depth;
 		this.material = material;
 	}
+	
+	
+	/**
+	 * Gets the type of the Artwork.
+	 * 
+	 * @return Sculpture.
+	 */
 	public String getType(){
 		return "Sculpture";
 	}
