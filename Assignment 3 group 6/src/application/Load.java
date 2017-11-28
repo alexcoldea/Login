@@ -105,7 +105,7 @@ public class Load {
 		
 		in.close();
 		
-		if (desc == null) {
+		if (desc.equals("empty")) {
 			return new Painting(uploader, title, photo, creator, year, price, bids, date, height, width);
 		} else {
 			return new Painting(uploader, title, photo, creator, year, price, bids, date, height, width, desc);
