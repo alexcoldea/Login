@@ -134,7 +134,7 @@ public class Sculpture extends Artwork {
 				+ "," + getDepth() + "," + getMaterial() + "," + getDate() + ",");
 		
 		if (getDescription() == null) {
-			return result;
+			return result + "empty";
 		} else {
 			return result + getDescription();
 		}
