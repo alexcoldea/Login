@@ -1,1 +1,1 @@
-Painting,Matthew Denholm,10,C:\Users\Matthew\git\Assignment-3\Assignment 3 group 6/src/Artwork Photos/Test Painting.jpg,Test Painting,Da vinci,1500,1000.0,5.5,3.3,Tue Nov 28 16:57:05 GMT 2017,Testing if save works
+Sculpture,Matthew Denholm,50,src/Artwork Photos/Oscar Trophy.jpg,Oscar Trophy,The Oscars,2017,1000.0,1.1,0.5,0.5,Gold,11/28/2017 22:27:06,A replica of the Academy award (Matt testing saving)
