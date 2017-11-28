@@ -1,6 +1,9 @@
 package application;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -71,8 +74,9 @@ public class Load {
 	 * Method interprets a line of data and creates a painting from that data.
 	 * @param line A string of data relating to a painting.
 	 * @return A painting specified in the line.
+	 * @throws ParseException 
 	 */
-	private static Painting createPainting(String line) {
+	private static Painting createPainting(String line){
 		Scanner in = new Scanner(line);
 		in.useDelimiter(",");
 		
@@ -85,7 +89,18 @@ public class Load {
 		double price = in.nextDouble();
 		double height = in.nextDouble();
 		double width = in.nextDouble();
-		Date date = new Date(in.next()); // Ask about this. (DATEFORMAT0
+		
+		// Converts String to Date
+		DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
+		Date date;
+		try {
+			date = df.parse(in.next());
+		} catch (ParseException e) {
+			date = null;
+			System.out.println("Date could not be loaded");
+			e.printStackTrace();
+		}
+		
 		String desc = in.next();
 		
 		in.close();
