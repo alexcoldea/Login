@@ -1,11 +1,8 @@
 package application;
 
 import java.io.File;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -25,7 +22,7 @@ public class Load {
 	public static ArrayList<Artwork> loadArtworks() {
 		Scanner in = null;
 		
-		File file = new File("artwork.txt");
+		File file = new File("artworks.txt");
 		try {
 			in = new Scanner(file);
 		} catch (Exception e) {
