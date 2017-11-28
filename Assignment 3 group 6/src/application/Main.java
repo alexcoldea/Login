@@ -413,16 +413,17 @@ public class Main extends Application {
 			Date date = new Date();
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 			String uploadDate = df.format(date);
-			
+
 			double height = Double.parseDouble(heightBox.getText());
 			double width = Double.parseDouble(widthBox.getText());
 
-			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + title + ".jpg";
+			String imagePath = "src/Artwork Photos/" + title + ".jpg";
+
 			photoLocation = imagePath;
 			File file = new File(imagePath);
 			if (!file.exists()) {
 				Save.saveImage(file, bufferedImage);
-				if (descriptionBox.getText().equals(null)) {
+				if (descriptionBox.getText() == null) {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, uploadDate, height, width);
 
@@ -478,12 +479,12 @@ public class Main extends Application {
 			double depth = Double.parseDouble(depthBox.getText());
 			String material = materialBox.getText();
 
-			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + title + ".jpg";
+			String imagePath = "src/Artwork Photos/" + title + ".jpg";
 			photoLocation = imagePath;
 			File file = new File(imagePath);
 			if (!file.exists()) {
 				Save.saveImage(file, bufferedImage);
-				if (descriptionBox.getText().equals(null)) {
+				if (descriptionBox.getText() == null) {
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, uploadDate, height, width, depth, material);
 
@@ -575,8 +576,7 @@ public class Main extends Application {
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
 			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
-			String imagePath = System.getProperty("user.dir") + "/src" + "/Artwork Photos" + "/" + "Additional Photos"
-					+ "/" + title + additionalPhotoCounter + ".jpg";
+			String imagePath = "src/Artwork Photos/Additional Photos" + "/" + title + additionalPhotoCounter + ".jpg";
 			additionalPhotosLocation = imagePath;
 			File photoFile = new File(imagePath);
 			if (!photoFile.exists()) {
@@ -611,9 +611,7 @@ public class Main extends Application {
 		imageViewer.setImage(null);
 		additionalPhotoCounter = 0;
 	}
-	
-	
-	
+
 	/**
 	 * Sets the imageViewer to a selected image and resizes it.
 	 * 
@@ -621,7 +619,7 @@ public class Main extends Application {
 	 *            An image of a painting or sculpture.
 	 * @return No return value.
 	 */
-	public void displayImageSetter(Image image){
+	public void displayImageSetter(Image image) {
 		imageViewer.setImage(image);
 		imageViewer.setFitWidth(DISPLAY_IMAGE_WIDTH);
 		imageViewer.setFitHeight(DISPLAY_IMAGE_HEIGHT);
@@ -636,5 +634,6 @@ public class Main extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
+
 	}
 }

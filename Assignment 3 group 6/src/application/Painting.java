@@ -94,7 +94,7 @@ public class Painting extends Artwork {
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," + getWidth()
 				+ "," + getDate() + ",");
 		
-		if (getDescription().equals(null)) {
+		if (getDescription() == null) {
 			return result + "empty";
 		} else {
 			return result + getDescription();
@@ -108,7 +108,7 @@ public class Painting extends Artwork {
 	 */
 	public String toString() {
 		String result = "";
-		if (getDescription().equals(null)) {
+		if (getDescription().equals("")) {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
 					+ "Reserve Price: �" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m" + "\n" + "Date: " + getDate() + "\n";
