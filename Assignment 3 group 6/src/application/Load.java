@@ -97,9 +97,6 @@ public class Load {
 		}
 	}
 	
-	public static void hello() {
-		System.out.println("hello");
-	}
 	
 	private static Sculpture createSculpture(String line) {
 		return null;
