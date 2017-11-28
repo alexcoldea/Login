@@ -131,8 +131,13 @@ public class Sculpture extends Artwork {
 	public String getSculptureInformation() {
 		String result = (getType() + "," + getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," + getWidth()
-				+ "," + getDepth() + "," + getMaterial() + "," + getDate() + "," + getDescription());
-		return result;
+				+ "," + getDepth() + "," + getMaterial() + "," + getDate() + ",");
+		
+		if (getDescription() == null) {
+			return result;
+		} else {
+			return result + getDescription();
+		}
 	}
 
 	/**
@@ -144,12 +149,12 @@ public class Sculpture extends Artwork {
 		String result = "";
 		if (getDescription().equals("")) {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m," + " Depth: " + getDepth() + "m,"
 					+ " Material: " + getMaterial() + "\n" + "Date: " + getDate() + "\n";
 		} else {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m," + " Depth: " + getDepth() + "m,"
 					+ " Material: " + getMaterial() + "\n" + "Date: " + getDate() + "\n" + "Description: "
 					+ getDescription() + "\n";
