@@ -420,7 +420,7 @@ public class Main extends Application {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width);
 
-					// Save.savePainting(painting);
+					Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
@@ -429,7 +429,7 @@ public class Main extends Application {
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
 							bidsAllowed, date, height, width, description);
 
-					// Save.savePainting(painting);
+					Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
 					Artwork.artworkList.add(painting);
