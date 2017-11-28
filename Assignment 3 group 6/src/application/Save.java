@@ -84,7 +84,6 @@ public class Save {
 			PrintWriter print = new PrintWriter(fw);
 
 			// Adds painting in front of the line.
-			print.write("sculpture,");
 			print.write(sculpture.getSculptureInformation() + "\n");
 
 			print.close();
