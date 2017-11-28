@@ -89,18 +89,7 @@ public class Load {
 		double price = in.nextDouble();
 		double height = in.nextDouble();
 		double width = in.nextDouble();
-		
-		// Converts String to Date
-		DateFormat df = new SimpleDateFormat("mm/dd/yyyy");
-		Date date;
-		try {
-			date = df.parse(in.next());
-		} catch (ParseException e) {
-			date = null;
-			System.out.println("Date could not be loaded");
-			e.printStackTrace();
-		}
-		
+		String date = in.next();
 		String desc = in.next();
 		
 		in.close();
