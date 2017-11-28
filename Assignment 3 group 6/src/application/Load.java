@@ -85,7 +85,7 @@ public class Load {
 		double price = in.nextDouble();
 		double height = in.nextDouble();
 		double width = in.nextDouble();
-		Date date = new Date(in.next()); // Ask about this.
+		Date date = new Date(in.next()); // Ask about this. (DATEFORMAT0
 		String desc = in.next();
 		
 		in.close();
@@ -95,6 +95,10 @@ public class Load {
 		} else {
 			return new Painting(uploader, title, photo, creator, year, price, bids, date, height, width, desc);
 		}
+	}
+	
+	public static void hello() {
+		System.out.println("hello");
 	}
 	
 	private static Sculpture createSculpture(String line) {
