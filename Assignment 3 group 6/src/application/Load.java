@@ -55,11 +55,11 @@ public class Load {
 			}
 			
 			switch (artworkType) {
-				case "painting":
+				case "Painting":
 					line = in.nextLine();
 					artworks.add(createPainting(line));
 					break;
-				case "sculpture":
+				case "Sculpture":
 					line = in.nextLine();
 					artworks.add(createSculpture(line));
 					break;
