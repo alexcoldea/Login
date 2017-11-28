@@ -2,6 +2,7 @@ package application;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,10 +21,6 @@ public class Save {
 
 	}
 
-	public static void saveArtwork(Artwork artwork) {
-
-	}
-
 	/**
 	 * Saves a specified painting into a text file.
 	 * 
@@ -33,8 +30,7 @@ public class Save {
 	public static void savePainting(Painting painting) {
 		File file = new File("artworks.txt");
 		FileWriter fw = null;
-
-		// Method creates file if one doesn't exist.
+		
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -42,20 +38,26 @@ public class Save {
 				e.printStackTrace();
 			}
 		}
+		
+		try {
+			fw = new FileWriter(file, true);
+		} catch (Exception e) {
+			System.out.println("Could not open artwork.txt");
+			System.exit(1);
+		}
 
 		try {
 			// Allows the file to be appendable.
 			fw = new FileWriter(file, true);
-
+			
+			// writes the contents onto a text file.
 			PrintWriter print = new PrintWriter(fw);
-
-			// Adds painting in front of the line.
-			print.write("painting,");
 			print.write(painting.getPaintingInformation() + "\n");
 
 			print.close();
 		} catch (Exception e) {
 			System.out.println("File not found");
+			System.exit(1);
 		}
 	}
 
@@ -89,6 +91,7 @@ public class Save {
 			print.close();
 		} catch (Exception e) {
 			System.out.println("File not found");
+			System.exit(1);
 		}
 	}
 
