@@ -92,8 +92,13 @@ public class Painting extends Artwork {
 	public String getPaintingInformation() {
 		String result = (getType() + "," + getUploader() + "," + getBidsAllowed() + "," + getPhotoLocation() + "," + getTitle() + ","
 				+ getCreatorName() + "," + getYear() + "," + getReservePrice() + "," + getHeight() + "," + getWidth()
-				+ "," + getDate() + "," + getDescription());
-		return result;
+				+ "," + getDate() + ",");
+		
+		if (getDescription() == null) {
+			return result + "empty";
+		} else {
+			return result + getDescription();
+		}
 	}
 
 	/**
@@ -105,11 +110,11 @@ public class Painting extends Artwork {
 		String result = "";
 		if (getDescription().equals("")) {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m" + "\n" + "Date: " + getDate() + "\n";
 		} else {
 			result = "Title: " + getTitle() + ", Creator: " + getCreatorName() + ", Year Created: " + getYear() + "\n"
-					+ "Reserve Price: £" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
+					+ "Reserve Price: ï¿½" + getReservePrice() + ", Bids Allowed: " + getBidsAllowed() + "\n" + "Height: "
 					+ getHeight() + "m," + " Width: " + getWidth() + "m" + "\n" + "Date: " + getDate() + "\n"
 					+ "Description: " + getDescription() + "\n";
 		}
