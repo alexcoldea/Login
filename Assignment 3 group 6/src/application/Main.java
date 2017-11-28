@@ -226,7 +226,7 @@ public class Main extends Application {
 				creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, descriptionLabel,
 				descriptionBox, textFieldErrorLabel);
-		right.getChildren().addAll(loadPaintingButton, imageErrorLabel, testLabel, testLabel2);
+		right.getChildren().addAll(loadPaintingButton, imageErrorLabel);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createPaintingButton.setOnAction(event -> {
@@ -295,8 +295,7 @@ public class Main extends Application {
 				titleBox, creatorNameLabel, creatorNameBox, yearLabel, yearBox, reservePriceLabel, reservePriceBox,
 				bidsAllowedLabel, bidsAllowedBox, heightLabel, heightBox, widthLabel, widthBox, depthLabel, depthBox,
 				materialLabel, materialBox, descriptionLabel, descriptionBox, textFieldErrorLabel);
-		right.getChildren().addAll(loadSculptureButton, addAdditionalPhotosButton, imageErrorLabel, testLabel,
-				testLabel2);
+		right.getChildren().addAll(loadSculptureButton, addAdditionalPhotosButton, imageErrorLabel);
 		bottom.getChildren().addAll(homeNavButton);
 
 		createSculptureButton.setOnAction(event -> {
