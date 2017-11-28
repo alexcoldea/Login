@@ -22,7 +22,6 @@ public class Artwork {
 	protected String date;
 	protected double height;
 	protected double width;
-	public static ArrayList<Artwork> artworkList = new ArrayList<Artwork>();
 	public static ArrayList<Artwork> usersArtworkList = new ArrayList<Artwork>();
 
 	/**

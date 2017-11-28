@@ -132,6 +132,11 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * Changes the current Scene to the selling Scene.
+	 * 
+	 * @return the sell Scene.
+	 */
 	public Scene navigateSell() {
 
 		// creates the sell page where you can choose to sell either painting or
@@ -432,7 +437,7 @@ public class Main extends Application {
 					Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
-					Artwork.artworkList.add(painting);
+
 				} else {
 					String description = descriptionBox.getText();
 					Painting painting = new Painting(uploader, title, photoLocation, creatorName, year, reservePrice,
@@ -441,7 +446,7 @@ public class Main extends Application {
 					Save.savePainting(painting);
 					testLabel.setText(painting.toString());
 					testLabel2.setText(photoLocation);
-					Artwork.artworkList.add(painting);
+
 				}
 
 			} else {
@@ -493,7 +498,7 @@ public class Main extends Application {
 					Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
-					Artwork.artworkList.add(sculpture);
+
 				} else {
 					String description = descriptionBox.getText();
 					Sculpture sculpture = new Sculpture(uploader, title, photoLocation, creatorName, year, reservePrice,
@@ -502,7 +507,7 @@ public class Main extends Application {
 					Save.saveSculpture(sculpture);
 					testLabel.setText(sculpture.toString());
 					testLabel2.setText(photoLocation);
-					Artwork.artworkList.add(sculpture);
+
 				}
 			} else {
 				imageErrorLabel.setText("Artwork already exists");
@@ -553,7 +558,7 @@ public class Main extends Application {
 		File file = Load.fileSelecter();
 
 		try {
-			bufferedAdditionalImage = ImageIO.read(file); 	
+			bufferedAdditionalImage = ImageIO.read(file);
 			additionalImage = SwingFXUtils.toFXImage(bufferedAdditionalImage, null);
 			displayImageSetter(additionalImage);
 			additionalPhotoCounter++;
